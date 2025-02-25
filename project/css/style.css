@@ -2,7 +2,10 @@
 /*Michael Scheuringer*/
 /*-----Stylesheet----*/
 /*********************/
-
+.sideBoxes{
+    width: 100%;
+    height: 100%;
+}
 /*+++START SIDE+++*/
 #start_side{
     background-image: url(../medien/backgrounds/background_start_side.jpg);
