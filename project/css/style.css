@@ -3,3 +3,10 @@
 /*-----Stylesheet----*/
 /*********************/
 
+/*+++START SIDE+++*/
+#start_side{
+    background-image: url(../medien/backgrounds/background_start_side.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
