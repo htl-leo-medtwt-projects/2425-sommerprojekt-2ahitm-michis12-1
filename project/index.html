@@ -4,9 +4,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Html-Main-Page</title>
     <link rel="stylesheet" href="./css/style.css">
+    <script src="./JS/main.js"defer></script>
 </head>
 <body>
-    <div class="sideBoxes" id="start_side"></div>
+    <div class="sideBoxes" id="start_side">
+        <div id="buttonBox_start">
+            <div id="buttonSettings_start">
+                <img src="./medien/items/settings.png" alt="s">
+            </div>
+            <div id="gameName_start"></div>
+            <div id="buttonPlay_start">
+                <img id="buttonPlayImg" onmouseover="loadPlayButton()" onmouseout="unLoadPlayButton()" src="./medien/items/revolver (2).gif" alt="button">
+            </div>
+        </div>
+    </div>
     <div class="sideBoxes" id="savedGames_side"></div>
     <div class="sideBoxes" id="world_side"></div>
     <div class="sideBoxes" id="shop_side"></div>
