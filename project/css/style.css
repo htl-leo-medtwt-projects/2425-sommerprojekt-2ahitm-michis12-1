@@ -8,6 +8,11 @@
 .sideBoxes{
     width: 100%;
     height: 100%;
+    
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
 }
 body{
     padding: 0;
@@ -52,4 +57,11 @@ body{
 #gameName_start{
     display: flex;
     justify-content: center;
+}
+/*SidesBackgrounds*/
+#settings_side{
+    background-image: url(../medien/backgrounds/setting_background.jpg);
+}
+#savedGames_side{
+    background-image: url(../medien/backgrounds/savedGames_background.jpg);
 }
