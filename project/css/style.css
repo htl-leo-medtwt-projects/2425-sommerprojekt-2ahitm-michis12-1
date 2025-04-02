@@ -78,13 +78,12 @@ body{
     padding: 5vw;
     padding-top: 2.5vw;
 }
-.settingsBox{
+.classicBox{
     background-color: rgba(42, 37, 29, 0.478);
     border: solid black 5px;
-    height: 60vh;
-    width: 37vw;
     color: white;
 }
+
 .title{
     font-size: 300%;
     margin-bottom: 0;
