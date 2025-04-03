@@ -177,3 +177,22 @@ body{
     50% {filter: brightness(1.2);}
     100% {filter: brightness(1);}
 }
+/*+++ World Game+++*/
+#playerContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100px; 
+    height: 100px;
+    background-color: rgba(255, 0, 0, 0.282);
+    overflow: hidden;
+    transform: translate(-50%, -50%);
+}
+
+#playerSprite {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: auto;
+    height: 100%;
+}
