@@ -22,7 +22,7 @@
     </div>
     <div class="sideBoxes" id="settings_side">
         <h1 class="title">Settings:</h1>
-        <div id="layoutBox_settings">
+        <div class="layoutBox_basic">
             <div class="classicBox" style="height: 60vh; width: 37vw;">
                 <h1>HowTo:</h1>
             </div>
@@ -32,7 +32,24 @@
         </div>
         <div class="button" onclick="switchToStart()">Back</div>
     </div>
-    <div class="sideBoxes" id="savedGames_side"></div>
+    <div class="sideBoxes" id="savedGames_side">
+        <h1 class="title">Choose your Save:</h1>
+        <div class="layoutBox_basic">
+            <div class="classicBox" id="saveBox1" style="width: 25vw; height: 60vh;" onclick="startSavedGame(1)">
+                <h1>Game 1</h1>
+                <img class="plusImg" src="./medien/items/plus.png" alt="plus">
+            </div>
+            <div class="classicBox" id="saveBox2" style="width: 25vw; height: 60vh;" onclick="startSavedGame(2)">
+                <h1>Game 2</h1>
+                <img class="plusImg" src="./medien/items/plus.png" alt="plus">
+            </div>
+            <div class="classicBox" id="saveBox3" style="width: 25vw; height: 60vh;" onclick="startSavedGame(3)">
+                <h1>Game 3</h1>
+                <img class="plusImg" src="./medien/items/plus.png" alt="plus">
+            </div>
+        </div>
+        <div class="button" onclick="switchToStart()">Back</div>
+    </div>
     <div class="sideBoxes" id="world_side"></div>
     <div class="sideBoxes" id="world_side_options"></div>
     <div class="sideBoxes" id="shop_side"></div>

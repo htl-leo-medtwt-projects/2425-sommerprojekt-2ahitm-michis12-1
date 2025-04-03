@@ -49,3 +49,7 @@ function killSides(){
     document.getElementById('savedGames_side').style.display = 'none';
     document.getElementById('settings_side').style.display = 'none';
 }
+// **** Basic Functions ****
+function startSavedGame(gameId){
+    switchToPlay();
+}
