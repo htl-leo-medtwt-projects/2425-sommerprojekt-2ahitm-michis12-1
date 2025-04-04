@@ -66,17 +66,17 @@ function setSprite(path, frameCount) {
 }
 
 function animatePlayer() {
-    console.log(PLAYER.spriteLength)
-
-    if(PLAYER.spriteImgNumber == PLAYER.spriteLength-1){
-        PLAYER.spriteImgNumber = 0;
-    }else{
+    if (PLAYER.spriteImgNumber < PLAYER.spriteLength-1) { 
+        console.log("+")
         PLAYER.spriteImgNumber++;
+        let x = parseFloat(PLAYER.spriteImg.style.right);
+        x += 320; 
+        PLAYER.spriteImg.style.right = x + "px";
+    } else { 
+        PLAYER.spriteImg.style.right = "0px";
+        PLAYER.spriteImgNumber = 0;
     }
-    console.log(PLAYER.spriteImgNumber)
-    let offsetX = -PLAYER.spriteImgNumber * 320;
-    PLAYER.spriteImg.style.backgroundPosition = `${offsetX}px 0`;
-    console.log('animate')
+    console.log(PLAYER.spriteImgNumber + "animated")
 }
 
 
