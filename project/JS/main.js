@@ -65,30 +65,34 @@ let GAME_CONFIG = {
 // **** Main Game Loop ****
 let isStanding= false;
 function gameLoop(){
-    if(KEY_EVENTS.leftArrow || KEY_EVENTS.rightArrow || KEY_EVENTS.upArrow || KEY_EVENTS.downArrow){
-        if(PLAYER.inHorseState){
-            setSprite(`url('./medien/sprites/horse${PLAYER.level}.png')`, 8)
-            
-        }else{
-            setSprite(`url('./medien/sprites/sprite${PLAYER.level}.png')`,4)
-            
+    let spriteSet = false;
+
+    if (KEY_EVENTS.leftArrow || KEY_EVENTS.rightArrow || KEY_EVENTS.upArrow || KEY_EVENTS.downArrow) {
+        if (!spriteSet) {  
+            if (PLAYER.inHorseState) {
+                setSprite(`url('./medien/sprites/horse${PLAYER.level}.png')`, 8);
+            } else {
+                setSprite(`url('./medien/sprites/sprite${PLAYER.level}.png')`, 4);
+            }
+            clearInterval(animationIn);
+            isStanding = false;
+            spriteSet = true;  
         }
-        clearInterval(animationIn);
-        isStanding = false
+    } else {
+        if (PLAYER.inHorseState) {
+            setSprite(`url('./medien/sprites/horseStanding${PLAYER.level}.png')`, 8);
+        } else {
+            setSprite(`url('./medien/sprites/spriteStanding${PLAYER.level}.png')`, 4);
+        }
+        if (!isStanding) {
+            animationIn = setInterval(function() {
+                animatePlayer();
+            }, 100);
+        }
+        isStanding = true;
+        spriteSet = false;  
     }
-    else{
-        if(PLAYER.inHorseState){
-            setSprite(`url('./medien/sprites/horseStanding${PLAYER.level}.png')`, 8)        
-        }else{
-            setSprite(`url('./medien/sprites/spriteStanding${PLAYER.level}.png')`,4)
-        }
-        if(!isStanding){
-            animationIn = setInterval(function(){
-                animatePlayer()
-            },100)
-        }
-        isStanding= true;
-    }
+    
     if (KEY_EVENTS.leftArrow) {
         movePlayer((-1) * GAME_CONFIG.characterSpeed, 0, -1);
         animatePlayer();

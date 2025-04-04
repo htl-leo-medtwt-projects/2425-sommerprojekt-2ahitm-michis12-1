@@ -60,24 +60,17 @@ function movePlayer(dx, dy, dr) {
 function setSprite(path, frameCount) {
     PLAYER.spriteImg.style.backgroundImage = path;
     PLAYER.spriteLength = frameCount;
-    PLAYER.spriteImgNumber = 0;
     PLAYER.spriteImg.style.backgroundPosition = "0px 0px";
     PLAYER.spriteImg.style.width = (frameCount * 320) + "px";
 }
 
 function animatePlayer() {
-    if (PLAYER.spriteImgNumber < PLAYER.spriteLength-1) { 
-        console.log("+")
+    if (PLAYER.spriteImgNumber < PLAYER.spriteLength - 1) { 
         PLAYER.spriteImgNumber++;
-        let x = parseFloat(PLAYER.spriteImg.style.right);
-        x += 320; 
-        PLAYER.spriteImg.style.right = x + "px";
+        let x = -PLAYER.spriteImgNumber * 320;  
+        PLAYER.spriteImg.style.backgroundPosition = `${x}px 0px`;  
     } else { 
-        PLAYER.spriteImg.style.right = "0px";
+        PLAYER.spriteImg.style.backgroundPosition = "0px 0px";  
         PLAYER.spriteImgNumber = 0;
     }
-    console.log(PLAYER.spriteImgNumber + "animated")
 }
-
-
-
