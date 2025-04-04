@@ -179,20 +179,23 @@ body{
 }
 /*+++ World Game+++*/
 #playerContainer {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 100px; 
-    height: 100px;
-    background-color: rgba(255, 0, 0, 0.282);
-    overflow: hidden;
     transform: translate(-50%, -50%);
+    z-index: 10;
 }
 
-#playerSprite {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: auto;
-    height: 100%;
+#spriteImg {
+    width: 2560px; 
+    height: 320px;
+    background-image: url('../medien/sprites/spriteStanding0.png');
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    transform: scale(0.3125); 
+    transform-origin: top left;
 }
+

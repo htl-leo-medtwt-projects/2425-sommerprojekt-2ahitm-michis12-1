@@ -67,18 +67,20 @@ let isStanding= false;
 function gameLoop(){
     if(KEY_EVENTS.leftArrow || KEY_EVENTS.rightArrow || KEY_EVENTS.upArrow || KEY_EVENTS.downArrow){
         if(PLAYER.inHorseState){
-            document.getElementById('playerSprite').src = `./medien/sprites/horse${PLAYER.level}.png`
+            setSprite(`url('./medien/sprites/horse${PLAYER.level}.png')`, 8)
+            
         }else{
-            document.getElementById('playerSprite').src = `./medien/sprites/sprite${PLAYER.level}.png`
+            setSprite(`url('./medien/sprites/sprite${PLAYER.level}.png')`,4)
+            
         }
         clearInterval(animationIn);
         isStanding = false
     }
     else{
         if(PLAYER.inHorseState){
-            document.getElementById('playerSprite').src = `./medien/sprites/horseStanding${PLAYER.level}.png`
+            setSprite(`url('./medien/sprites/horseStanding${PLAYER.level}.png')`, 8)        
         }else{
-            document.getElementById('playerSprite').src = `./medien/sprites/spriteStanding${PLAYER.level}.png`
+            setSprite(`url('./medien/sprites/spriteStanding${PLAYER.level}.png')`,4)
         }
         if(!isStanding){
             animationIn = setInterval(function(){
@@ -88,22 +90,22 @@ function gameLoop(){
         isStanding= true;
     }
     if (KEY_EVENTS.leftArrow) {
-        //movePlayer((-1) * GAME_CONFIG.characterSpeed, 0, -1);
+        movePlayer((-1) * GAME_CONFIG.characterSpeed, 0, -1);
         animatePlayer();
         movePlayer(GAME_CONFIG.characterSpeed, 0, 0);//right
     }
     if (KEY_EVENTS.rightArrow) {
-        //movePlayer(GAME_CONFIG.characterSpeed, 0, 1);
+        movePlayer(GAME_CONFIG.characterSpeed, 0, 1);
         animatePlayer();
         movePlayer((-1) * GAME_CONFIG.characterSpeed, 0, 0);//left
     }
     if (KEY_EVENTS.upArrow) {
-        //movePlayer(0, (-1) * GAME_CONFIG.characterSpeed, 0);
+        movePlayer(0, (-1) * GAME_CONFIG.characterSpeed, 0);
         animatePlayer();
         movePlayer(0,GAME_CONFIG.characterSpeed, 0);//down
     }
     if (KEY_EVENTS.downArrow) {
-        //movePlayer(0, GAME_CONFIG.characterSpeed, 0);
+        movePlayer(0, GAME_CONFIG.characterSpeed, 0);
         animatePlayer();
         movePlayer(0, (-1) * GAME_CONFIG.characterSpeed, 0);//up
     }

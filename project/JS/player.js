@@ -4,7 +4,7 @@
  ***********************************/
 let PLAYER = {
     box: document.getElementById('playerContainer'),
-    spriteImg: document.getElementById('playerSprite'),
+    spriteImg: document.getElementById('spriteImg'),
     spriteImgNumber: 0, 
     spriteDirection: 1,
     coins: 0,
@@ -43,13 +43,13 @@ function movePlayer(dx, dy, dr) {
     PLAYER.box.style.left = (originalX + dx) + 'px';
     PLAYER.box.style.top = (originalY + dy) + 'px';
 
-
+ */
     // update sprite direction if needed
     if (dr != 0 && dr != PLAYER.spriteDirection) {
         PLAYER.spriteDirection = dr;
         PLAYER.box.style.transform = `scaleX(${dr})`;
     }
-        */
+       
 }
 
 
@@ -57,13 +57,24 @@ function movePlayer(dx, dy, dr) {
 /***********************************
  * ANIMATE PLAYER
  * **********************************/
+function setSprite(path, frameCount) {
+    PLAYER.spriteImg.style.backgroundImage = path;
+    PLAYER.spriteLength = frameCount;
+    PLAYER.spriteImgNumber = 0;
+    PLAYER.spriteImg.style.backgroundPosition = "0px 0px";
+    PLAYER.spriteImg.style.width = (frameCount * 320) + "px";
+}
+
 function animatePlayer() {
-    PLAYER.spriteLength = PLAYER.inHorseState ? 8 : 4;
+    console.log(PLAYER.spriteLength)
 
-    PLAYER.spriteImgNumber = (PLAYER.spriteImgNumber + 1) % PLAYER.spriteLength;
-
+    if(PLAYER.spriteImgNumber == PLAYER.spriteLength-1){
+        PLAYER.spriteImgNumber = 0;
+    }else{
+        PLAYER.spriteImgNumber++;
+    }
+    console.log(PLAYER.spriteImgNumber)
     let offsetX = -PLAYER.spriteImgNumber * 320;
-
     PLAYER.spriteImg.style.backgroundPosition = `${offsetX}px 0`;
     console.log('animate')
 }
