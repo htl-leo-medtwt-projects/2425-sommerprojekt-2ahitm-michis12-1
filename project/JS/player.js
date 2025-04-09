@@ -48,7 +48,7 @@ function movePlayer(dx, dy, dr) {
     
     if (dr != 0 && dr != PLAYER.spriteDirection) {
         PLAYER.spriteDirection = dr;
-        PLAYER.box.style.transform = ` scaleX(${dr})`; 
+        PLAYER.box.style.transform = `translate(-50%, -50%) scaleX(${dr})`; 
     }
        
 }

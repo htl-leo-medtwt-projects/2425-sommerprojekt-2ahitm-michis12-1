@@ -86,7 +86,7 @@ function useSpeed(){
 
 let redBoxClaimed = false; 
 function checkCollision(){
-    /*let colliding = isColliding(player, collisionBox1, 0) || 
+    let colliding = isColliding(player, collisionBox1, 0) || 
                     isColliding(player, collisionBox2, 0) || 
                     isColliding(player, collisionBox3, 0) || 
                     isColliding(player, collisionBox4, 0) ||
@@ -102,12 +102,10 @@ function checkCollision(){
         PLAYER.box.style.left = '-7px';
         PLAYER.box.style.top = '800px';
     }
-    return colliding;*/
-    return false
+    return colliding;
 }
 let isStanding= false;
 let loopMonster = true;
-
 function gameLoop() {
     
     if(!checkCollision()){
@@ -129,30 +127,26 @@ function gameLoop() {
             }
             isStanding= true;
         }
-        
         if (KEY_EVENTS.leftArrow) {
-            
+            movePlayer((-1) * GAME_CONFIG.characterSpeed, 0, -1);
             animatePlayer();
             if(checkCollision()) movePlayer(GAME_CONFIG.characterSpeed, 0, 0);//right
         }
         if (KEY_EVENTS.rightArrow) {
-            
+            movePlayer(GAME_CONFIG.characterSpeed, 0, 1);
             animatePlayer();
             if(checkCollision()) movePlayer((-1) * GAME_CONFIG.characterSpeed, 0, 0);//left
         }
         if (KEY_EVENTS.upArrow) {
-            if(!KEY_EVENTS.rightArrow && !KEY_EVENTS.leftArrow) animatePlayer();
-            
-            
+            movePlayer(0, (-1) * GAME_CONFIG.characterSpeed, 0);
+            animatePlayer();
             if(checkCollision()) movePlayer(0,GAME_CONFIG.characterSpeed, 0);//down
         }
         if (KEY_EVENTS.downArrow) {
-            if(!KEY_EVENTS.rightArrow && !KEY_EVENTS.leftArrow) animatePlayer();
-            
-            
+            movePlayer(0, GAME_CONFIG.characterSpeed, 0);
+            animatePlayer();
             if(checkCollision()) movePlayer(0, (-1) * GAME_CONFIG.characterSpeed, 0);//up
         }
-       
     }
     if (isColliding(player, redBox, -13) && !redBoxClaimed) {
         redBoxClaimed = true;
