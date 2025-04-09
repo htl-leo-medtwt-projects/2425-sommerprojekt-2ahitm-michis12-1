@@ -9,7 +9,7 @@ let PLAYER = {
     spriteDirection: 1,
     coins: 0,
     name: "placeholder",
-    level: 0,
+    level: 1,
     inHorseState: false,
     spriteLength: 4
 }
@@ -45,9 +45,10 @@ function movePlayer(dx, dy, dr) {
 
  */
     // update sprite direction if needed
+    
     if (dr != 0 && dr != PLAYER.spriteDirection) {
         PLAYER.spriteDirection = dr;
-        PLAYER.box.style.transform = `scaleX(${dr})`;
+        PLAYER.box.style.transform = ` scaleX(${dr})`; 
     }
        
 }

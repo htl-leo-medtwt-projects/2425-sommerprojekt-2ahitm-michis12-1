@@ -59,7 +59,7 @@ function startSavedGame(gameId){
     switchToPlay();
 }
 let GAME_CONFIG = {
-    gameSpeed: 30, 
+    gameSpeed: 10, 
     characterSpeed: 7, 
 }
 // **** Main Game Loop ****
@@ -79,15 +79,15 @@ function gameLoop(){
             spriteSet = true;  
         }
     } else {
-        if (PLAYER.inHorseState) {
-            setSprite(`url('./medien/sprites/horseStanding${PLAYER.level}.png')`, 8);
-        } else {
-            setSprite(`url('./medien/sprites/spriteStanding${PLAYER.level}.png')`, 4);
-        }
         if (!isStanding) {
+            if (PLAYER.inHorseState) {
+                setSprite(`url('./medien/sprites/horseStanding${PLAYER.level}.png')`, 8);
+            } else {
+                setSprite(`url('./medien/sprites/spriteStanding${PLAYER.level}.png')`, 4);
+            }
             animationIn = setInterval(function() {
                 animatePlayer();
-            }, 100);
+            }, 200);
         }
         isStanding = true;
         spriteSet = false;  
