@@ -71,6 +71,9 @@ body{
 #savedGames_side{
     background-image: url(../medien/backgrounds/savedGames_background.jpg);
 }
+#shop_side{
+    background-image: url(../medien/backgrounds/store_background.png);
+}
 /*+++Settings-Side+++*/
 /*+++Basic Css+++*/
 .layoutBox_basic{
@@ -178,6 +181,11 @@ body{
     100% {filter: brightness(1);}
 }
 /*+++ World Game+++*/
+#world_side{
+    background-image: url(../medien/backgrounds/stoneStr.png);
+    background-repeat: repeat;
+    background-size: 10vw;
+}
 #playerContainer {
     width: 100px;
     height: 100px;
@@ -197,4 +205,24 @@ body{
     background-position: 0 0;
     transform: scale(0.3125); 
     transform-origin: top left;
+}
+/*library*/
+.swiper-slide {
+    background: #a68970;
+    color: rgb(0, 0, 0);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 14vw;
+    height: auto;
+}
+.swiper{
+    width: 40vw;
+    height: 70vh;
+    margin-top: 15vh;
+    
+    border: solid 10px black;
+    background-color: #543528;
+    overflow: hidden;
 }

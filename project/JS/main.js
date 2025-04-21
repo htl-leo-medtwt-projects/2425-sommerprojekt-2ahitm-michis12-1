@@ -116,3 +116,13 @@ function gameLoop(){
     }
     setTimeout(gameLoop, 1000 / GAME_CONFIG.gameSpeed);
 }
+
+//library input for shop:
+
+const swiper = new Swiper(".mySwiper", {
+    direction: "vertical",
+    slidesPerView: 1,
+    spaceBetween: 30,
+    mousewheel: true,
+    effect: "slide", 
+});

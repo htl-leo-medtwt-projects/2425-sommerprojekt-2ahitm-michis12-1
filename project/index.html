@@ -8,6 +8,8 @@
     <script src="./JS/keyevents.js"defer></script>
     <script src="./JS/player.js"defer></script>
     <script src="./JS/detectCollisions.js"defer></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 </head>
 <body>
     <div class="sideBoxes" id="start_side">
@@ -52,6 +54,7 @@
             </div>
         </div>
         <div class="button" onclick="switchToStart()">Back</div>
+        <div onclick="switchToShop()">To Shop[deleat later]</div>
     </div>
     <div class="sideBoxes" id="world_side">
         <div id="playerContainer">
@@ -59,7 +62,40 @@
         </div>        
     </div>
     <div class="sideBoxes" id="world_side_options"></div>
-    <div class="sideBoxes" id="shop_side"></div>
+    <div class="sideBoxes" id="shop_side">
+        
+        <div class="swiper mySwiper" style="margin-right: 55vw;">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <h2>Hut</h2>
+                    <h5>Ein schicker Hut fördert Respekt und schützt vor der Sonne.</h5>
+                    <p>Dieser Hut besteht aus edelstem Leder umwickelt mit einem Seidetuch. Er ist Handgefertigt und passt perfekt auf jeden Kopf.</p>
+                    <img src="./medien/items/arrow.png" alt="arrow" style="width: 2vw; height: auto;">
+                    <p>Bauern und Tierhalter legen oft viel wert auf einen schönen Hut</p>
+                    <button>Kaufen</button>
+                </div>
+                <div class="swiper-slide">
+                    <h2>Stiefel</h2>
+                    <h5>Mit gutem Schuhwerk läuft es sich besser!</h5>
+                    <p>Diese Cowboy-Stiefel sind aus echtem Kuhleder gefertigt und mit typischen Metallsporren ausgestattet. Sie schaun nicht nur stylisch aus sie haben auch angenehme Effekte:</p>
+                    <img src="./medien/items/arrow.png" alt="arrow" style="width: 2vw; height: auto;">
+                    <p>Steigert deine Laufgeschwindigkeit um 15%</p>
+                    <p>Steigert die Laufgeschwindigkeit deines Pferdes um 5%</p>
+                    <button>Kaufen</button>
+                </div>
+                <div class="swiper-slide">
+                    <h2>Gun & Belt</h2>
+                    <h5>Eine Waffe am Gürtel jagt selbst den härtesten Männern einen Schrecken ein.</h5>
+                    <p>Dieser edle Revolver schützt nicht nur vor wilden Tieren er verleiht dir auch eine Menge Respekt. Selbst die fießesten Cowboys und Saloonführer werden dich bemerken wenn du mit dieser Waffe am Gürtel auftauchst. Gefertigt ist dieses Einzelstück aus einer äußert beständigen Legierung, was sie sehr langlebig macht. Der Griff besteht aus echtem Schlangenleder aus den Bergregionen...</p>
+                    <img src="./medien/items/arrow.png" alt="arrow" style="width: 2vw; height: auto;">
+                    <p>Dein Ansehen in dieser Region steigt</p>
+                    <button>Kaufen</button>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
     <div class="sideBoxes" id="saloon_side"></div>
 
 </body>
