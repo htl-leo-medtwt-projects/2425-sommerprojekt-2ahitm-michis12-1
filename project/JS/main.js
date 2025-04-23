@@ -134,3 +134,23 @@ function moneyRefresh(number){
     PLAYER.coins =+ number
     document.getElementById('moneyDisplayNumber').innerHTML = PLAYER.coins;
 }
+
+// map js:
+let CAMERA = {
+    x: 16000, //todo set character to grave
+    y: 14525,
+    speed: GAME_CONFIG.characterSpeed
+};
+
+const viewport = document.getElementById("world_side");
+const map = document.getElementById("map");
+
+let viewportWidth = viewport.clientWidth;
+let viewportHeight = viewport.clientHeight;
+let mapWidth = map.offsetWidth;
+let mapHeight = map.offsetHeight;
+
+window.addEventListener('resize', () => {
+    viewportWidth = viewport.clientWidth;
+    viewportHeight = viewport.clientHeight;
+});

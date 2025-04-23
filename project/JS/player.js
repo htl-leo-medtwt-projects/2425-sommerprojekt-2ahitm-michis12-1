@@ -34,25 +34,26 @@ let GAME_DATA3 = {
  * @param {number} dr - player heading direction (-1: look left || 1: look right)
  */
 function movePlayer(dx, dy, dr) {
-    /*
-    // save original position
-    let originalX = parseFloat(PLAYER.box.style.left);
-    let originalY = parseFloat(PLAYER.box.style.top);
-
-    // calculate new position
-    PLAYER.box.style.left = (originalX + dx) + 'px';
-    PLAYER.box.style.top = (originalY + dy) + 'px';
-
- */
-    // update sprite direction if needed
-    
+    updateCamera(dx, dy)
     if (dr != 0 && dr != PLAYER.spriteDirection) {
         PLAYER.spriteDirection = dr;
         PLAYER.box.style.transform = `translate(-50%, -50%) scaleX(${dr})`; 
     }
        
 }
+/***********************************
+ * MOVE-MAP
+ * **********************************/
+function updateCamera(dx, dy) {
+    CAMERA.x += dx;
+    CAMERA.y += dy;
+    
+    CAMERA.x = Math.max(0, Math.min(CAMERA.x, mapWidth - viewportWidth));
+    CAMERA.y = Math.max(0, Math.min(CAMERA.y, mapHeight - viewportHeight));
 
+    map.style.left = -CAMERA.x + 'px';
+    map.style.top = -CAMERA.y + 'px';
+}
 
 
 /***********************************

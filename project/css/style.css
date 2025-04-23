@@ -185,14 +185,26 @@ body{
     background-image: url(../medien/backgrounds/stoneStr.png);
     background-repeat: repeat;
     background-size: 10vw;
+    overflow: hidden;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+#map{
+    background-image: url(../medien/map/map.png);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 32000px;
+    height: 29050px;
 }
 #playerContainer {
     width: 100px;
     height: 100px;
     overflow: hidden;
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 50vh;
+    left: 50vw;
     transform: translate(-50%, -50%) ;
     z-index: 10;
 }
