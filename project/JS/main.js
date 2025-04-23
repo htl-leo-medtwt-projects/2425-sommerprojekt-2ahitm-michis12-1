@@ -137,18 +137,26 @@ function moneyRefresh(number){
 
 // map js:
 let CAMERA = {
-    x: 16000, //todo set character to grave
-    y: 14525,
+    x: 5000, //todo set character to grave
+    y: 145,
     speed: GAME_CONFIG.characterSpeed
 };
 
 const viewport = document.getElementById("world_side");
 const map = document.getElementById("map");
 
-let viewportWidth = viewport.clientWidth;
-let viewportHeight = viewport.clientHeight;
-let mapWidth = map.offsetWidth;
-let mapHeight = map.offsetHeight;
+let viewportWidth, viewportHeight, mapWidth, mapHeight;
+
+function updateDimensions() {
+    viewportWidth = viewport.clientWidth;
+    viewportHeight = viewport.clientHeight;
+    mapWidth = map.offsetWidth;
+    mapHeight = map.offsetHeight;
+}
+
+window.addEventListener('load', updateDimensions); 
+window.addEventListener('resize', updateDimensions);
+
 
 window.addEventListener('resize', () => {
     viewportWidth = viewport.clientWidth;
