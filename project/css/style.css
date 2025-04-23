@@ -206,9 +206,25 @@ body{
     transform: scale(0.3125); 
     transform-origin: top left;
 }
+/*+++Shop Side+++*/
+#moneyDisplay{
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 5px;
+    border: solid 5px black;
+    background-color: #dda970;
+    width: 5vw;
+    height: 2vh;
+    position: fixed;
+    top: 2vh;
+    right: 2vh;
+    padding: 1vh;
+}
 /*library*/
 .swiper-slide {
-    background: #a68970;
+    background-image: url(../medien/backgrounds/shop_item_bg.png);
+    background-size: cover;
+    background-repeat: no-repeat;
     color: rgb(0, 0, 0);
     display: flex;
     flex-direction: column;
@@ -218,9 +234,9 @@ body{
     height: auto;
 }
 .swiper{
-    width: 40vw;
-    height: 70vh;
-    margin-top: 15vh;
+    width: 39vw;
+    height: 80vh;
+    margin-top: 10vh;
     
     border: solid 10px black;
     background-color: #543528;

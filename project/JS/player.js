@@ -9,7 +9,7 @@ let PLAYER = {
     spriteDirection: 1,
     coins: 0,
     name: "placeholder",
-    level: 3,
+    level: 1,
     inHorseState: false,
     spriteLength: 4
 }

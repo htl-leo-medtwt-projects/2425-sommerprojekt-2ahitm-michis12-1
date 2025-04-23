@@ -34,6 +34,7 @@ function switchToPlay(){
 }
 function switchToShop(){
     killSides();
+    moneyRefresh(0)
     document.getElementById('shop_side').style.display = 'block'
 }
 function switchToSaloon(){
@@ -126,3 +127,10 @@ const swiper = new Swiper(".mySwiper", {
     mousewheel: true,
     effect: "slide", 
 });
+
+//shop functions:
+
+function moneyRefresh(number){
+    PLAYER.coins =+ number
+    document.getElementById('moneyDisplayNumber').innerHTML = PLAYER.coins;
+}
