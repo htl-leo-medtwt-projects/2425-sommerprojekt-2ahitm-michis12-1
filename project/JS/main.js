@@ -61,7 +61,7 @@ function startSavedGame(gameId){
 }
 let GAME_CONFIG = {
     gameSpeed: 10, 
-    characterSpeed: 7, 
+    characterSpeed: 10, 
 }
 // **** Main Game Loop ****
 let isStanding= false;
@@ -137,8 +137,8 @@ function moneyRefresh(number){
 
 // map js:
 let CAMERA = {
-    x: 5000, //todo set character to grave
-    y: 145,
+    x: 1400, //todo set character to grave : left: -1148px; top: -9352px;  + todo set border on right left: -9850px; top : -5870px;+ left left: -10px; top: -5860px;
+    y: 9350,
     speed: GAME_CONFIG.characterSpeed
 };
 
@@ -153,8 +153,10 @@ function updateDimensions() {
     mapWidth = map.offsetWidth;
     mapHeight = map.offsetHeight;
 }
-
-window.addEventListener('load', updateDimensions); 
+window.addEventListener('load', () => {
+    updateDimensions();
+    updateCamera(0,0); 
+});
 window.addEventListener('resize', updateDimensions);
 
 

@@ -193,7 +193,7 @@ body{
 #map{
     background-image: url(../medien/map/map.png);
     position: absolute;
-    top: 0;
+    top: 500px;
     left: 0;
     width: 11390px;
     height: 10266px;

@@ -34,7 +34,7 @@ let GAME_DATA3 = {
  * @param {number} dr - player heading direction (-1: look left || 1: look right)
  */
 function movePlayer(dx, dy, dr) {
-    updateCamera(dx, dy)
+    updateCamera(-dx, -dy)
     if (dr != 0 && dr != PLAYER.spriteDirection) {
         PLAYER.spriteDirection = dr;
         PLAYER.box.style.transform = `translate(-50%, -50%) scaleX(${dr})`; 
@@ -47,9 +47,13 @@ function movePlayer(dx, dy, dr) {
 function updateCamera(dx, dy) {
     CAMERA.x += dx;
     CAMERA.y += dy;
-    
-    CAMERA.x = Math.max(0, Math.min(CAMERA.x, mapWidth - viewportWidth));
-    CAMERA.y = Math.max(0, Math.min(CAMERA.y, mapHeight - viewportHeight));
+
+    console.log("CU:", CAMERA.x, CAMERA.y);
+    const maxCamX = mapWidth - viewportWidth / 2;
+    const maxCamY = mapHeight - viewportHeight / 2;
+
+    const minCamX = -viewportWidth / 2;
+    const minCamY = -viewportHeight / 2;
 
     map.style.left = -CAMERA.x + 'px';
     map.style.top = -CAMERA.y + 'px';
