@@ -137,8 +137,8 @@ function moneyRefresh(number){
 
 // map js:
 let CAMERA = {
-    x: 1400, //todo set character to grave : left: -1148px; top: -9352px;  + todo set border on right left: -9850px; top : -5870px;+ left left: -10px; top: -5860px;
-    y: 9350,
+    x: PLAYER.coX, //todo set character to grave : left: -1148px; top: -9352px;  + todo set border on right left: -9850px; top : -5870px;+ left left: -10px; top: -5860px;
+    y: PLAYER.coY,
     speed: GAME_CONFIG.characterSpeed
 };
 

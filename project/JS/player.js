@@ -11,7 +11,9 @@ let PLAYER = {
     name: "placeholder",
     level: 1,
     inHorseState: false,
-    spriteLength: 4
+    spriteLength: 4,
+    coX: 1400,
+    coY: 9350
 }
 let GAME_DATA1 = {
 
