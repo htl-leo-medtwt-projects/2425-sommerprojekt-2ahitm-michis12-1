@@ -29,7 +29,11 @@ function switchToPlay(){
     killSides();
     document.getElementById('world_side').style.display = 'block'
     document.getElementById('world_side').style.visibility = 'visible';
-    gameLoop()
+    setTimeout(function(){
+        document.getElementById('loadingSc').style.display = 'none';
+        gameLoop()
+    },4500)
+    
 
 }
 function switchToShop(){
@@ -61,7 +65,7 @@ function startSavedGame(gameId){
 }
 let GAME_CONFIG = {
     gameSpeed: 10, 
-    characterSpeed: 10, 
+    characterSpeed: 10,  //todo change to 10
 }
 // **** Main Game Loop ****
 let isStanding= false;

@@ -36,6 +36,9 @@ let GAME_DATA3 = {
  * @param {number} dr - player heading direction (-1: look left || 1: look right)
  */
 function movePlayer(dx, dy, dr) {
+    /*if(isColliding(PLAYER.box, document.getElementById('map'), 30)){
+        
+    }*/
     updateCamera(-dx, -dy)
     if (dr != 0 && dr != PLAYER.spriteDirection) {
         PLAYER.spriteDirection = dr;
