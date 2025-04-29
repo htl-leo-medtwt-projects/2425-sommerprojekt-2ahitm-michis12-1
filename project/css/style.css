@@ -329,7 +329,7 @@ body{
   .achievement-toast img {
     width: 48px;
     height: 48px;
-    animation: rotateAndShine 2s linear infinite;
+    animation: rotateAndShine 1.8s ease-in-out infinite;
   }
   .achievement-text {
     display: flex;

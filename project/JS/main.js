@@ -170,6 +170,7 @@ window.addEventListener('resize', () => {
 });
 //Archivements
 function showAchievement() {
+    //todo add sound
     console.log("show")
     const toast = document.getElementById('achievement');
     toast.classList.add('show');
