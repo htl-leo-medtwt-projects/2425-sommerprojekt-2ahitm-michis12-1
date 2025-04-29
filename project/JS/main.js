@@ -168,3 +168,13 @@ window.addEventListener('resize', () => {
     viewportWidth = viewport.clientWidth;
     viewportHeight = viewport.clientHeight;
 });
+//Archivements
+function showAchievement() {
+    console.log("show")
+    const toast = document.getElementById('achievement');
+    toast.classList.add('show');
+
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 4000);
+}

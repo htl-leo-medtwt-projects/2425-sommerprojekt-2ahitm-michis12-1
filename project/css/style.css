@@ -230,7 +230,14 @@ body{
     transform: translate(-50%, -50%) ;
     z-index: 10;
 }
+#playerButtons{
+    width: 100vw;
+    height: 100vh;
 
+}
+#newsBox{
+
+}
 #spriteImg {
     width: 2560px; 
     height: 320px;
@@ -276,3 +283,65 @@ body{
     background-color: #543528;
     overflow: hidden;
 }
+/*Archivements:*/
+.achievement-toast {
+
+    position: fixed;
+    bottom: 2vh;
+    left: 10vw;
+    width: 30vw;
+    background: linear-gradient(to right, 
+    transparent 0%, 
+    var(--color-main) 15%, 
+    var(--color-main) 85%, 
+    transparent 100%);
+    color: white;
+    padding: 10px 10px;
+    padding-left: 13vw;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transform: translateX(150%);
+    transition: transform 0.5s ease;
+    z-index: 99;
+    opacity: 0;
+    pointer-events: none;
+    font-family: sans-serif;
+  }
+  .achievement-toast.show {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+  @keyframes rotateAndShine {
+    0% {
+      transform: rotateY(0deg);
+      filter: brightness(1);
+    }
+    50% {
+      filter: brightness(2.5);
+    }
+    100% {
+      transform: rotateY(360deg);
+      filter: brightness(1);
+    }
+  } 
+  .achievement-toast img {
+    width: 48px;
+    height: 48px;
+    animation: rotateAndShine 2s linear infinite;
+  }
+  .achievement-text {
+    display: flex;
+    flex-direction: column;
+    font-family: 'westFont';
+  }
+  .achievement-title {
+    font-weight: bold;
+    font-size: 16px;
+    font-family: 'westFont';
+  }
+  .achievement-desc {
+    font-size: 14px;
+    opacity: 0.9;
+  }
