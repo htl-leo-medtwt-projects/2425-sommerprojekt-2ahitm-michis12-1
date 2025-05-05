@@ -98,24 +98,26 @@ function gameLoop(){
         spriteSet = false;  
     }
     if (KEY_EVENTS.leftArrow) {
-            
-        animatePlayer();
+        if(KEY_EVENTS.rightArrow && KEY_EVENTS.leftArrow) ;
+        else animatePlayer();
         movePlayer(GAME_CONFIG.characterSpeed, 0, -1);//right
     }
     if (KEY_EVENTS.rightArrow) {
+        if(KEY_EVENTS.leftArrow && KEY_EVENTS.rightArrow);
+        else animatePlayer()
         
-        animatePlayer();
         movePlayer((-1) * GAME_CONFIG.characterSpeed, 0, 1);//left
     }
     if (KEY_EVENTS.upArrow) {
         if(!KEY_EVENTS.rightArrow && !KEY_EVENTS.leftArrow) animatePlayer();
-        
+        else if(KEY_EVENTS.rightArrow && KEY_EVENTS.leftArrow) animatePlayer();
         
         movePlayer(0,GAME_CONFIG.characterSpeed, 0);//down
     }
     if (KEY_EVENTS.downArrow) {
         if(!KEY_EVENTS.rightArrow && !KEY_EVENTS.leftArrow) animatePlayer();
-        
+        else if(KEY_EVENTS.rightArrow && KEY_EVENTS.leftArrow) animatePlayer();
+
         
         movePlayer(0, (-1) * GAME_CONFIG.characterSpeed, 0);//up
     }
