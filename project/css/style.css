@@ -214,11 +214,15 @@ body{
 }
 #map{
     background-image: url(../medien/map/map.png);
-    position: absolute;
+    position: relative;
     top: 500px;
     left: 0;
     width: 11390px;
     height: 10266px;
+}
+.mapObjekts{
+    position: absolute;
+    
 }
 #playerContainer {
     width: 100px;
@@ -307,13 +311,13 @@ body{
     opacity: 0;
     pointer-events: none;
     font-family: sans-serif;
-  }
-  .achievement-toast.show {
+}
+.achievement-toast.show {
     transform: translateX(0);
     opacity: 1;
     pointer-events: auto;
-  }
-  @keyframes rotateAndShine {
+}
+@keyframes rotateAndShine {
     0% {
       transform: rotateY(0deg);
       filter: brightness(1);
@@ -325,29 +329,36 @@ body{
       transform: rotateY(360deg);
       filter: brightness(1);
     }
-  } 
-  .achievement-toast img {
+} 
+.achievement-toast img {
     width: 48px;
     height: 48px;
     animation: rotateAndShine 1.8s ease-in-out infinite;
-  }
-  .achievement-text {
+}
+.achievement-text {
     display: flex;
     flex-direction: column;
     font-family: 'westFont';
-  }
-  .achievement-title {
+}
+.achievement-title {
     font-weight: bold;
     font-size: 16px;
     font-family: 'westFont';
-  }
-  .achievement-desc {
+}
+.achievement-desc {
     font-size: 14px;
     opacity: 0.9;
-  }
-  .priceDisplay{
+}
+.priceDisplay{
     display: flex;
     flex-direction: row;
     align-items: center;
     padding-left: 45.6%;
-  }
+}
+/*options Side:*/
+#world_side_options{
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    width: 100vw;
+    height: 100vh;
+}
