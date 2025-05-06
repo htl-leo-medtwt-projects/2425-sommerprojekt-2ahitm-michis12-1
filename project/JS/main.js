@@ -137,8 +137,36 @@ const swiper = new Swiper(".mySwiper", {
 //shop functions:
 
 function moneyRefresh(number){
-    PLAYER.coins =+ number
+    console.log("refresh + "+PLAYER.coins)
+    PLAYER.coins += number;
     document.getElementById('moneyDisplayNumber').innerHTML = PLAYER.coins;
+}
+function buyItem(nmb){
+    if(nmb ==1){
+        if(PLAYER.level == 0 && PLAYER.coins > 5){
+            PLAYER.level++;
+            moneyRefresh(-5);
+            //boughtSound
+            document.getElementById("butSh1").style.display = "none";
+        }else errorBuy();
+    }else if(nmb ==2){
+        if(PLAYER.level == 1 && PLAYER.coins > 15){
+            PLAYER.level++;
+            moneyRefresh(-15);
+            //boughtSound
+            document.getElementById("butSh2").style.display = "none";
+        }else errorBuy();
+    }else {
+        if(PLAYER.level == 2 && PLAYER.coins > 30){
+            PLAYER.level++;
+            moneyRefresh(-30);
+            //boughtSound
+            document.getElementById("butSh3").style.display = "none";
+        }else errorBuy();
+    }
+}
+function errorBuy(){
+    alert("You cant buy this item just now. Ether earn enough money or try buying the items above!")
 }
 
 // map js:
