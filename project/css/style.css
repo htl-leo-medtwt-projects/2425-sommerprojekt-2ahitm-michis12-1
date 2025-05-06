@@ -345,3 +345,9 @@ body{
     font-size: 14px;
     opacity: 0.9;
   }
+  .priceDisplay{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 45.6%;
+  }
