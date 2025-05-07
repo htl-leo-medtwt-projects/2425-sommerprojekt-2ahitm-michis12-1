@@ -139,6 +139,7 @@ const swiper = new Swiper(".mySwiper", {
 function moneyRefresh(number){
     console.log("refresh + "+PLAYER.coins)
     PLAYER.coins += number;
+    document.getElementById('infoBoxMap').innerHTML= "Level: "+PLAYER.level+"/3 | Cash: "+PLAYER.coins;
     document.getElementById('moneyDisplayNumber').innerHTML = PLAYER.coins;
 }
 function buyItem(nmb){

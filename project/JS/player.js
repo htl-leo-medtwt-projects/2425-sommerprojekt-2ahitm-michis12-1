@@ -53,7 +53,6 @@ function updateCamera(dx, dy) {
     CAMERA.x += dx;
     CAMERA.y += dy;
 
-    console.log("CU:", CAMERA.x, CAMERA.y);
     const maxCamX = mapWidth - viewportWidth / 2;
     const maxCamY = mapHeight - viewportHeight / 2;
 
@@ -62,7 +61,23 @@ function updateCamera(dx, dy) {
 
     map.style.left = -CAMERA.x + 'px';
     map.style.top = -CAMERA.y + 'px';
+    updateMinimapViewport()
 }
+const minimapViewport = document.getElementById("dotMap");
+
+
+const mapHeight2 = 10266;
+const minimapHeight = 200;
+const scale = minimapHeight / mapHeight2;
+
+function updateMinimapViewport() {
+    const scrollX = map.offsetLeft * -1;
+    const scrollY = map.offsetTop * -1;
+    
+    minimapViewport.style.left = `${scrollX * scale + 16.5}px`;
+    minimapViewport.style.top = `${scrollY * scale + 14}px`;
+}
+
 
 
 /***********************************

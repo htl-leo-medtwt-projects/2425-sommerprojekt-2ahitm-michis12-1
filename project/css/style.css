@@ -362,3 +362,68 @@ body{
     width: 100vw;
     height: 100vh;
 }
+/*Minimap+ info:*/
+#infoBoxMap{
+    position: fixed;
+    top: 17vw;
+    right: 2vh;
+    border: black 5px solid;
+    width: 15vw;
+    height: 2vh;
+    background-color: var(--color-main);
+}
+#miniMapBox{
+    position: fixed;
+    top: 2vh;
+    right: 2vh;
+    width: 15vw;
+    height: 15vw;
+    border: black 5px solid;
+    background-image: url(../medien/backgrounds/shop_item_bg.png);
+    background-size: cover;
+}
+#miniMapBox img{
+    width: auto;
+    height: 200px;
+    padding-top: 1vh;
+    filter: brightness(1.2) contrast(1.1);
+    opacity: 0.85;
+}
+#dotMap{
+    background-color: red;
+    width: 3px;
+    height: 3px;
+    position: absolute;
+    top: 195px;
+    left: 45px;
+}
+#crossMap{
+    background-image: url(../medien/map/cross.png);
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 100px;
+    left: 100px;
+}
+#goalDotMap{
+    background-color: rgb(253, 184, 37);
+    width: 3px;
+    height: 3px;
+    position: absolute;
+    top: 25px;
+    left: 45px;
+    animation: goalDot 1s ease-in-out infinite;
+}
+@keyframes goalDot {
+    0%{
+        filter: brightness(1);
+    }
+    50%{
+        filter: brightness(1.3);
+    }
+    100%{
+        filter: brightness(1);
+    }
+}
