@@ -69,6 +69,7 @@ let GAME_CONFIG = {
 }
 // **** Main Game Loop ****
 let isStanding= false;
+let imgS = document.getElementById('spriteImg')
 function gameLoop(){
     let spriteSet = false;
 
@@ -76,8 +77,14 @@ function gameLoop(){
         if (!spriteSet) {  
             if (PLAYER.inHorseState) {
                 setSprite(`url('./medien/sprites/horse${PLAYER.level}.png')`, 8);
+                PLAYER.spriteDiff = 2880;
+                imgS.style.width = "23040px"
+                imgS.style.height = "2880px"
             } else {
                 setSprite(`url('./medien/sprites/sprite${PLAYER.level}.png')`, 4);
+                PLAYER.spriteDiff = 320;
+                 imgS.style.width = "2560px"
+                imgS.style.height = "320px"
             }
             clearInterval(animationIn);
             isStanding = false;
@@ -87,8 +94,14 @@ function gameLoop(){
         if (!isStanding) {
             if (PLAYER.inHorseState) {
                 setSprite(`url('./medien/sprites/horseStanding${PLAYER.level}.png')`, 8);
+                PLAYER.spriteDiff = 2880;
+                 imgS.style.width = "23040px"
+                imgS.style.height = "2880px"
             } else {
                 setSprite(`url('./medien/sprites/spriteStanding${PLAYER.level}.png')`, 4);
+                PLAYER.spriteDiff = 320;
+                 imgS.style.width = "2560px"
+                imgS.style.height = "320px"
             }
             animationIn = setInterval(function() {
                 animatePlayer();

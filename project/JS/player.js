@@ -13,7 +13,9 @@ let PLAYER = {
     inHorseState: false,
     spriteLength: 4,
     coX: 1400,
-    coY: 9350
+    coY: 9350,
+    spriteDiff: 320
+    
 }
 let GAME_DATA1 = {
 
@@ -87,13 +89,13 @@ function setSprite(path, frameCount) {
     PLAYER.spriteImg.style.backgroundImage = path;
     PLAYER.spriteLength = frameCount;
     PLAYER.spriteImg.style.backgroundPosition = "0px 0px";
-    PLAYER.spriteImg.style.width = (frameCount * 320) + "px";
+    PLAYER.spriteImg.style.width = (frameCount * PLAYER.spriteDiff) + "px";
 }
 
 function animatePlayer() {
     if (PLAYER.spriteImgNumber < PLAYER.spriteLength - 1) { 
         PLAYER.spriteImgNumber++;
-        let x = -PLAYER.spriteImgNumber * 320;  
+        let x = -PLAYER.spriteImgNumber * PLAYER.spriteDiff;  
         PLAYER.spriteImg.style.backgroundPosition = `${x}px 0px`;  
     } else { 
         PLAYER.spriteImg.style.backgroundPosition = "0px 0px";  
