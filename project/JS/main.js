@@ -70,6 +70,7 @@ let GAME_CONFIG = {
 // **** Main Game Loop ****
 let isStanding= false;
 let imgS = document.getElementById('spriteImg')
+let imgC = document.getElementById('playerContainer')
 function gameLoop(){
     let spriteSet = false;
 
@@ -78,13 +79,21 @@ function gameLoop(){
             if (PLAYER.inHorseState) {
                 setSprite(`url('./medien/sprites/horse${PLAYER.level}.png')`, 8);
                 PLAYER.spriteDiff = 2880;
+                imgC.style.width= "450px"
+                imgC.style.height= "450px"
                 imgS.style.width = "23040px"
                 imgS.style.height = "2880px"
+                imgS.style.transform = "scale(0.15625)"
+                GAME_CONFIG.characterSpeed= PLAYER.horseSpeed;
             } else {
                 setSprite(`url('./medien/sprites/sprite${PLAYER.level}.png')`, 4);
                 PLAYER.spriteDiff = 320;
-                 imgS.style.width = "2560px"
+                imgC.style.width= "100px"
+                imgC.style.height= "100px"
+                imgS.style.width = "2560px"
                 imgS.style.height = "320px"
+                imgS.style.transform = "scale(0.3125)"
+                GAME_CONFIG.characterSpeed= PLAYER.walkSpeed;
             }
             clearInterval(animationIn);
             isStanding = false;
@@ -94,14 +103,8 @@ function gameLoop(){
         if (!isStanding) {
             if (PLAYER.inHorseState) {
                 setSprite(`url('./medien/sprites/horseStanding${PLAYER.level}.png')`, 8);
-                PLAYER.spriteDiff = 2880;
-                 imgS.style.width = "23040px"
-                imgS.style.height = "2880px"
             } else {
                 setSprite(`url('./medien/sprites/spriteStanding${PLAYER.level}.png')`, 4);
-                PLAYER.spriteDiff = 320;
-                 imgS.style.width = "2560px"
-                imgS.style.height = "320px"
             }
             animationIn = setInterval(function() {
                 animatePlayer();
@@ -167,6 +170,8 @@ function buyItem(nmb){
         if(PLAYER.level == 1 && PLAYER.coins > 15){
             PLAYER.level++;
             moneyRefresh(-15);
+            PLAYER.horseSpeed = 24
+            PLAYER.walkSpeed = 14
             //boughtSound
             document.getElementById("butSh2").style.display = "none";
         }else errorBuy();
@@ -227,13 +232,15 @@ function showAchievement() {
 let buttonCh = document.getElementById('changeButton')
 let nmb = 1
 function changedButton(){
-    if(nmb == 1){
-        buttonCh.src = './medien/items/hatToHorse.gif'
-        nmb++;
-        PLAYER.inHorseState= true;
-    }else{
-        buttonCh.src = './medien/items/horseToHat.gif'
-        nmb--;
-        PLAYER.inHorseState= false
+    if(level > 0){
+        if(nmb == 1 ){
+            buttonCh.src = './medien/items/hatToHorse.gif'
+            nmb++;
+            PLAYER.inHorseState= true;
+        }else{
+            buttonCh.src = './medien/items/horseToHat.gif'
+            nmb--;
+            PLAYER.inHorseState= false
+        }
     }
 }

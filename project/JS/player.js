@@ -14,8 +14,9 @@ let PLAYER = {
     spriteLength: 4,
     coX: 1400,
     coY: 9350,
-    spriteDiff: 320
-    
+    spriteDiff: 320,
+    horseSpeed: 22,
+    walkSpeed: 12
 }
 let GAME_DATA1 = {
 
