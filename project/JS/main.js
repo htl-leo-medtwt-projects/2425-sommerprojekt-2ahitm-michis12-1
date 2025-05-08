@@ -65,7 +65,7 @@ function startSavedGame(gameId){
 }
 let GAME_CONFIG = {
     gameSpeed: 10, 
-    characterSpeed: 10,  //todo change to 10
+    characterSpeed: 12,  
 }
 // **** Main Game Loop ****
 let isStanding= false;
@@ -209,4 +209,18 @@ function showAchievement() {
     setTimeout(() => {
       toast.classList.remove('show');
     }, 4000);
+}
+//animation changeButton
+let buttonCh = document.getElementById('changeButton')
+let nmb = 1
+function changedButton(){
+    if(nmb == 1){
+        buttonCh.src = './medien/items/hatToHorse.gif'
+        nmb++;
+        PLAYER.inHorseState= true;
+    }else{
+        buttonCh.src = './medien/items/horseToHat.gif'
+        nmb--;
+        PLAYER.inHorseState= false
+    }
 }
