@@ -18,6 +18,12 @@ function isColliding(div1, div2, tolerance = 0) {
 }
 
 
-function checkCollision(){
-    return isColliding(PLAYER.box, document.getElementById('Objekt1'), 0);
+function checkCollision() {
+    for (let i = 1; i <= 11; i++) {
+        const objekt = document.getElementById(`Objekt${i}`);
+        if (objekt && isColliding(PLAYER.box, objekt, 40)) {
+            return true;
+        }
+    }
+    return false;
 }
