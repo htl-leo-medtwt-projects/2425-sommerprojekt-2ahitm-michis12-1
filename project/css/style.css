@@ -184,7 +184,7 @@ body{
 #loadingSc{
     width: 100vw;
     height: 100vh;
-    z-index: 99;
+    z-index: 99000;
     background-image: url(../medien/backgrounds/loading.png);
     background-size: cover;
     background-repeat: no-repeat;
@@ -222,6 +222,7 @@ body{
 }
 .mapObjekts{
     position: absolute;
+    z-index: 2;
     
 }
 #playerContainer {
@@ -237,7 +238,7 @@ body{
 #playerButtons{
     width: 100vw;
     height: 100vh;
-
+    z-index: 99;
 }
 #newsBox{
 
@@ -361,6 +362,7 @@ body{
     backdrop-filter: blur(8px);
     width: 100vw;
     height: 100vh;
+    z-index: 999999;
 }
 /*Minimap+ info:*/
 #infoBoxMap{
@@ -371,6 +373,7 @@ body{
     width: 15vw;
     height: 2vh;
     background-color: var(--color-main);
+    z-index: 9999;
 }
 #miniMapBox{
     position: fixed;
@@ -381,6 +384,7 @@ body{
     border: black 5px solid;
     background-image: url(../medien/backgrounds/shop_item_bg.png);
     background-size: cover;
+    z-index: 9999;
 }
 #miniMapBox img{
     width: auto;
@@ -388,6 +392,7 @@ body{
     padding-top: 1vh;
     filter: brightness(1.2) contrast(1.1);
     opacity: 0.85;
+
 }
 #dotMap{
     background-color: red;
@@ -397,6 +402,7 @@ body{
     top: 195px;
     left: 45px;
 }
+
 #crossMap{
     background-image: url(../medien/map/cross.png);
     background-size: cover;
@@ -434,4 +440,5 @@ body{
     right: 5.7vh;
     width: 12vw;
     height: 12vw;
+    z-index: 9999;
 }

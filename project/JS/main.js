@@ -32,6 +32,7 @@ function switchToPlay(){
     setTimeout(function(){
         document.getElementById('loadingSc').style.display = 'none';
         gameLoop()
+        PLAYER.startGame = true;
     },4500)
     
 
@@ -73,6 +74,7 @@ let imgS = document.getElementById('spriteImg')
 let imgC = document.getElementById('playerContainer')
 function gameLoop(){
     let spriteSet = false;
+    console.log("gameLoopStart")
 
     if (KEY_EVENTS.leftArrow || KEY_EVENTS.rightArrow || KEY_EVENTS.upArrow || KEY_EVENTS.downArrow) {
         if (!spriteSet) {  
@@ -232,7 +234,7 @@ function showAchievement() {
 let buttonCh = document.getElementById('changeButton')
 let nmb = 1
 function changedButton(){
-    if(level > 0){
+    if(PLAYER.level > 0){
         if(nmb == 1 ){
             buttonCh.src = './medien/items/hatToHorse.gif'
             nmb++;

@@ -16,7 +16,8 @@ let PLAYER = {
     coY: 9350,
     spriteDiff: 320,
     horseSpeed: 22,
-    walkSpeed: 12
+    walkSpeed: 12,
+    startGame: false
 }
 let GAME_DATA1 = {
 
@@ -53,18 +54,52 @@ function movePlayer(dx, dy, dr) {
  * MOVE-MAP
  * **********************************/
 function updateCamera(dx, dy) {
-    CAMERA.x += dx;
-    CAMERA.y += dy;
+    if(!PLAYER.startGame){
+        CAMERA.x += dx;
+        CAMERA.y += dy;
 
-    const maxCamX = mapWidth - viewportWidth / 2;
-    const maxCamY = mapHeight - viewportHeight / 2;
+        const maxCamX = mapWidth - viewportWidth / 2;
+        const maxCamY = mapHeight - viewportHeight / 2;
 
-    const minCamX = -viewportWidth / 2;
-    const minCamY = -viewportHeight / 2;
+        const minCamX = -viewportWidth / 2;
+        const minCamY = -viewportHeight / 2;
 
-    map.style.left = -CAMERA.x + 'px';
-    map.style.top = -CAMERA.y + 'px';
-    updateMinimapViewport()
+        map.style.left = -CAMERA.x + 'px';
+        map.style.top = -CAMERA.y + 'px';
+        updateMinimapViewport()
+    }else{
+        if(!checkCollision()){
+            CAMERA.x += dx;
+            CAMERA.y += dy;
+    
+            const maxCamX = mapWidth - viewportWidth / 2;
+            const maxCamY = mapHeight - viewportHeight / 2;
+    
+            const minCamX = -viewportWidth / 2;
+            const minCamY = -viewportHeight / 2;
+    
+            map.style.left = -CAMERA.x + 'px';
+            map.style.top = -CAMERA.y + 'px';
+            updateMinimapViewport()
+        }else {
+            let oldX = CAMERA.x;
+            let oldY = CAMERA.y;
+            CAMERA.x += dx;
+            map.style.left = -CAMERA.x + 'px';
+            if (checkCollision()) {
+                CAMERA.x = oldX; 
+                map.style.left = -CAMERA.x + 'px';
+            }
+            CAMERA.y += dy;
+            map.style.top = -CAMERA.y + 'px';
+            if (checkCollision()) {
+                CAMERA.y = oldY; 
+                map.style.top = -CAMERA.y + 'px';
+            }
+            updateMinimapViewport();
+        }
+    }
+    
 }
 const minimapViewport = document.getElementById("dotMap");
 
@@ -79,6 +114,11 @@ function updateMinimapViewport() {
     
     minimapViewport.style.left = `${scrollX * scale + 16.5}px`;
     minimapViewport.style.top = `${scrollY * scale + 14}px`;
+   /* 
+    let mountain = document.getElementById('miniMapMountain');
+    mountain.style.width = 600*scale+"px";
+    mountain.style.top = 7000*scale+"px"
+    mountain.style.left = 2000*scale+"px"*/
 }
 
 
