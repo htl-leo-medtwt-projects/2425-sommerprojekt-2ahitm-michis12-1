@@ -19,11 +19,17 @@ function isColliding(div1, div2, tolerance = 0) {
 
 
 function checkCollision() {
-    for (let i = 1; i <= 11; i++) {
+    let tolerance = 40;
+    if(PLAYER.inHorseState) tolerance = 120
+    for (let i = 1; i <= 12; i++) {
         const objekt = document.getElementById(`Objekt${i}`);
-        if (objekt && isColliding(PLAYER.box, objekt, 40)) {
+        if (objekt && isColliding(PLAYER.box, objekt, tolerance)) {
             return true;
         }
     }
+    if(isColliding(PLAYER.box,document.getElementById('Objekt12'),-250)){
+        document.getElementById('Objekt12').style.animation = 'goalDot 2s ease-in-out infinite';
+    }else document.getElementById('Objekt12').style.animation = 'none';
     return false;
 }
+

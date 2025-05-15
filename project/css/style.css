@@ -418,8 +418,8 @@ body{
     width: 3px;
     height: 3px;
     position: absolute;
-    top: 25px;
-    left: 45px;
+    top: 190px;
+    left: 85px;
     animation: goalDot 1s ease-in-out infinite;
 }
 @keyframes goalDot {
