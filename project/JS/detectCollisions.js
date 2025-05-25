@@ -27,9 +27,15 @@ function checkCollision() {
             return true;
         }
     }
-    if(isColliding(PLAYER.box,document.getElementById('Objekt12'),-250)){
-        document.getElementById('Objekt12').style.animation = 'goalDot 2s ease-in-out infinite';
-    }else document.getElementById('Objekt12').style.animation = 'none';
+    for(let i = 12; i <= 13;i++){
+        if(isColliding(PLAYER.box,document.getElementById('Objekt'+i),-250)){
+            document.getElementById('Objekt'+i).style.animation = 'goalDot 2s ease-in-out infinite';
+        }else document.getElementById('Objekt'+i).style.animation = 'none';
+    }
+    if(isColliding(PLAYER.box,document.getElementById('Objekt13'),-150)){
+        toggleBox(1,13)
+        
+    }else toggleBox(2,13)
     return false;
 }
 

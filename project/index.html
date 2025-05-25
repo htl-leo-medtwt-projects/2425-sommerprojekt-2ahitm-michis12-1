@@ -75,6 +75,7 @@
             <img class="mapObjekts" id="Objekt10" style="width: 500px; height: auto; top: 1300px; left: 3000px;" src="./medien/items/buildingRow2.png" alt="w">
             <img class="mapObjekts" id="Objekt11" style="width: 500px; height: auto; top: 1350px; left: 4200px;" src="./medien/items/buildingRow1.png" alt="w">
             <img class="mapObjekts" id="Objekt12" style="width: 750px; height: auto; top: 350px; left: 3500px;" src="./medien/items/saloon.png" alt="w">
+            <img class="mapObjekts" id="Objekt13" style="width: 100px; height: auto; top: 9300px; left: 4350px;" src="./medien/cha/character1.png" alt="w">
 
         </div> 
         <div id="playerContainer">
@@ -92,11 +93,32 @@
         <img id="changeButton" onclick="changedButton()" src="./medien/items/hatButton.png" alt="g">
         <div class="button" style=" position: fixed; bottom:  2vh; right: 2.15vh; width: 12.7vw; z-index: 9999;" onclick="openOptions()">Options</div>
         <div id="playerButtons">
-            <div class="achievement-toast" id="achievement">
+            <div class="achievement-toast" id="achievement1">
                 <img src="./medien/items/archivement.png" alt="Icon">
                 <div class="achievement-text">
-                  <div class="achievement-title">Erfolg!</div>
-                  <div class="achievement-desc">Du hast ein neues Level freigeschaltet!</div>
+                  <div class="achievement-title">Achievement!</div>
+                  <div class="achievement-desc">You reached a new LEVEL! Find the farmer now...</div>
+                </div>
+            </div>
+            <div class="achievement-toast" id="achievement2">
+                <img src="./medien/items/archivement.png" alt="Icon">
+                <div class="achievement-text">
+                  <div class="achievement-title">Achievement!</div>
+                  <div class="achievement-desc">You reached a new LEVEL! Now your faster...</div>
+                </div>
+            </div>
+            <div class="achievement-toast" id="achievement3">
+                <img src="./medien/items/archivement.png" alt="Icon">
+                <div class="achievement-text">
+                  <div class="achievement-title">Achievement!</div>
+                  <div class="achievement-desc">You reached a new LEVEL! Check out the saloon now...</div>
+                </div>
+            </div>
+            <div class="achievement-toast" id="help1">
+                <img src="./medien/items/coin1.png" alt="Icon">
+                <div class="achievement-text">
+                  <div class="achievement-title">Need Help?</div>
+                  <div class="achievement-desc">Check out the goal-doat on the minimap...</div>
                 </div>
             </div>
         </div>
@@ -154,5 +176,15 @@
 
     <div class="sideBoxes" id="saloon_side"></div>
 
+    <div class="sideBoxes" id="minigame1_geier">
+        <div id="m1_message">Wähle eine Karte</div>
+        <div id="m1_cards">
+          <div class="m1_card" data-index="0">🂠</div>
+          <div class="m1_card" data-index="1">🂠</div>
+          <div class="m1_card" data-index="2">🂠</div>
+        </div>
+      </div>
+
+    <div class="sideBoxes" id="blurDiv"></div>
 </body>
 </html>

@@ -442,3 +442,59 @@ body{
     height: 12vw;
     z-index: 9999;
 }
+/*Talk-to-sb:*/
+.talk-box {
+    position: absolute;
+    background-color: var(--color-main);
+    border: 5px solid black;
+    padding: 5px 10px;
+    font-size: 12px;
+    text-align: center;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+#blurDiv{
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    z-index: 10001;
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+/*Minigame1:*/
+#minigame1_geier {
+    text-align: center;
+    padding: 20px;
+}
+
+#m1_cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.m1_card {
+    width: 80px;
+    height: 120px;
+    border: 2px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    cursor: pointer;
+    background-color: #fff;
+    user-select: none;
+}
+
+.m1_card.m1_revealed {
+    pointer-events: none;
+}
+
+#m1_message {
+    font-size: 18px;
+}

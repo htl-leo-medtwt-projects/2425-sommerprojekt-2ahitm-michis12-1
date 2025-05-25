@@ -17,7 +17,9 @@ let PLAYER = {
     spriteDiff: 320,
     horseSpeed: 22,
     walkSpeed: 12,
-    startGame: false
+    startGame: false,
+    throwAchievement: false,
+    playedTimes: 1
 }
 let GAME_DATA1 = {
 

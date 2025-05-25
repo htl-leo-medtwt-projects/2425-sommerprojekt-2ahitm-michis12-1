@@ -34,6 +34,17 @@ function switchToPlay(){
         gameLoop()
         PLAYER.startGame = true;
     },4500)
+    if(PLAYER.throwAchievement){
+        setTimeout(function(){
+            showAchievement()
+        }, 7000)
+        PLAYER.throwAchievement = false;
+    }
+    if(PLAYER.playedTimes == 1){
+        setTimeout(function(){
+            showHelp(1)
+        }, 15000)
+    }
     
 
 }
@@ -167,6 +178,7 @@ function buyItem(nmb){
             moneyRefresh(-5);
             //boughtSound
             document.getElementById("butSh1").style.display = "none";
+            PLAYER.throwAchievement = true;
         }else errorBuy();
     }else if(nmb ==2){
         if(PLAYER.level == 1 && PLAYER.coins > 15){
@@ -176,6 +188,7 @@ function buyItem(nmb){
             PLAYER.walkSpeed = 14
             //boughtSound
             document.getElementById("butSh2").style.display = "none";
+            PLAYER.throwAchievement = true;
         }else errorBuy();
     }else {
         if(PLAYER.level == 2 && PLAYER.coins > 30){
@@ -183,6 +196,7 @@ function buyItem(nmb){
             moneyRefresh(-30);
             //boughtSound
             document.getElementById("butSh3").style.display = "none";
+            PLAYER.throwAchievement = true;
         }else errorBuy();
     }
 }
@@ -223,7 +237,17 @@ window.addEventListener('resize', () => {
 function showAchievement() {
     //todo add sound
     console.log("show")
-    const toast = document.getElementById('achievement');
+    const toast = document.getElementById('achievement'+PLAYER.level);
+    toast.classList.add('show');
+
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 4000);
+}
+function showHelp(nmb) {
+    //todo add sound
+    console.log("show")
+    const toast = document.getElementById('help'+nmb);
     toast.classList.add('show');
 
     setTimeout(() => {
@@ -246,3 +270,71 @@ function changedButton(){
         }
     }
 }
+// talking box+convo:
+let talkBox;
+
+function toggleBox(state, cha) {
+    const img = document.getElementById("Objekt"+cha);
+
+    if (state === 1) {
+        if (talkBox) return; 
+
+        talkBox = document.createElement("div");
+        talkBox.className = "talk-box";
+        if(cha == 13){
+            talkBox.innerText = "Talk to Georgino Mc Gregor\n[STRG drücken]";
+        }
+        document.getElementById("map").appendChild(talkBox);
+        const imgRect = img.getBoundingClientRect();
+        const mapRect = document.getElementById("map").getBoundingClientRect();
+
+        talkBox.style.left = (img.offsetLeft + img.offsetWidth / 2 - 70) + "px";
+        talkBox.style.top = (img.offsetTop - 30) + "px"; 
+    } else if (state === 2 && talkBox) {
+        talkBox.remove();
+        talkBox = null;
+    }
+}
+function openConvo(nmb){
+    if(nmb== 1){
+        document.getElementById('blurDiv').style.display= 'block';
+    }
+}
+/***********/
+//MINIGAMES:
+/***********/
+const m1_container = document.getElementById("minigame1_geier");
+const m1_messageEl = m1_container.querySelector("#m1_message");
+const m1_cards = m1_container.querySelectorAll(".m1_card");
+
+let m1_winningIndex = Math.floor(Math.random() * 3);
+
+function m1_resetGame() {
+    m1_winningIndex = Math.floor(Math.random() * 3);
+    m1_messageEl.textContent = "Wähle eine Karte";
+    m1_cards.forEach(card => {
+      card.textContent = "🂠";
+      card.classList.remove("m1_revealed");
+      card.style.backgroundColor = "#fff";
+    });
+}
+function m1_handleCardClick(e) {
+    const card = e.currentTarget;
+    const index = parseInt(card.getAttribute("data-index"));
+    card.classList.add("m1_revealed");
+
+    if (index === m1_winningIndex) {
+      card.textContent = "💰";
+      card.style.backgroundColor = "#cfc";
+      m1_messageEl.textContent = "Gewonnen!";
+    } else {
+      card.textContent = "💀";
+      card.style.backgroundColor = "#fcc";
+      m1_messageEl.textContent = "Falsch! Mische neu...";
+      setTimeout(m1_resetGame, 1000);
+    }
+}
+
+m1_cards.forEach(card => {
+    card.addEventListener("click", m1_handleCardClick);
+});
