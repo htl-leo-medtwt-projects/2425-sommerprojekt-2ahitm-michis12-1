@@ -46,11 +46,11 @@ function keyListenerUp(e) {
     
     
 }
+
 document.addEventListener("keydown", function (event) {
-    if (event.code === "ControlRight" && talkBox) {
+    if (event.code === "ControlRight" && talkBox ) {
       if(PLAYER.level== 0){
         openConvo(1);
       }
-      
     }
   });

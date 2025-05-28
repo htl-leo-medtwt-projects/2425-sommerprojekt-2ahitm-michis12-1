@@ -81,6 +81,7 @@ let GAME_CONFIG = {
 }
 // **** Main Game Loop ****
 let isStanding= false;
+let continueGame = true;
 let imgS = document.getElementById('spriteImg')
 let imgC = document.getElementById('playerContainer')
 function gameLoop(){
@@ -150,9 +151,17 @@ function gameLoop(){
         
         movePlayer(0, (-1) * GAME_CONFIG.characterSpeed, 0);//up
     }
-    setTimeout(gameLoop, 1000 / GAME_CONFIG.gameSpeed);
+    if(continueGame){
+        setTimeout(gameLoop, 1000 / GAME_CONFIG.gameSpeed);
+    }
+    
 }
-
+function breakGameLoop(){
+    continueGame= false;
+    setTimeout(function(){
+        continueGame= true
+    },100)
+}
 //library input for shop:
 
 const swiper = new Swiper(".mySwiper", {
@@ -283,7 +292,7 @@ function toggleBox(state, cha) {
         talkBox.className = "talk-box";
         if(cha == 13){
             talkBox.innerText = "Talk to Georgino Mc Gregor\n[STRG drücken]";
-        }
+        }else if(cha == 14) talkBox.innerText = "Enter the store to buy items\n[STRG drücken]";
         document.getElementById("map").appendChild(talkBox);
         const imgRect = img.getBoundingClientRect();
         const mapRect = document.getElementById("map").getBoundingClientRect();
@@ -295,9 +304,50 @@ function toggleBox(state, cha) {
         talkBox = null;
     }
 }
+let continueConvoIndex= 0;
 function openConvo(nmb){
     if(nmb== 1){
-        document.getElementById('blurDiv').style.display= 'block';
+        if(continueConvoIndex == 0){
+            document.getElementById('blurDiv').style.display= 'grid';
+            breakGameLoop()
+            document.getElementById('chaBoxBlur').style.backgroundImage = "url('./medien/cha/character1.png')";
+            continueConvoIndex++;
+        }else if(continueConvoIndex == 1){
+            let i = 0;
+            let deletingPro =setInterval(function(){
+                i++;
+                document.getElementById('convoTxt'+i).innerHTML = '';
+                if(i==3){
+                   clearInterval(deletingPro);
+                }
+            },120) 
+            let j = 4
+            
+            setTimeout(function(){
+                let convo2 = setInterval(() => {
+                    j--;
+                    console.log(j)
+                    if(j==3){
+                        document.getElementById('convoTxt'+j).innerHTML=  'Are you brave enough bonehead?'
+                        
+                    }else if (j==2){
+                        document.getElementById('convoTxt'+j).innerHTML=  'I give you 3 cards, choose the right one and you´ll get all my gold. Choose wrong, i´ll get all your bones! '
+                    }else if(j==1){
+                        document.getElementById('convoTxt'+j).innerHTML= 'The game is easy.'
+                        clearInterval(convo2)
+                    }
+                
+                }, 120);
+            },361)
+            continueConvoIndex++;
+                
+            
+        }else if(continueConvoIndex== 2){
+            document.getElementById('blurDiv').innerHTML = '';
+            document.getElementById('minigame1_geier').style.display= 'block';
+            
+        }
+        
     }
 }
 /***********/
@@ -311,11 +361,11 @@ let m1_winningIndex = Math.floor(Math.random() * 3);
 
 function m1_resetGame() {
     m1_winningIndex = Math.floor(Math.random() * 3);
-    m1_messageEl.textContent = "Wähle eine Karte";
+    m1_messageEl.textContent = "Choose a card";
     m1_cards.forEach(card => {
-      card.textContent = "🂠";
+      card.textContent = "";
       card.classList.remove("m1_revealed");
-      card.style.backgroundColor = "#fff";
+      card.style.setProperty("background-image", "url(./medien/backgrounds/card.png)", "important");
     });
 }
 function m1_handleCardClick(e) {
@@ -324,14 +374,22 @@ function m1_handleCardClick(e) {
     card.classList.add("m1_revealed");
 
     if (index === m1_winningIndex) {
-      card.textContent = "💰";
-      card.style.backgroundColor = "#cfc";
-      m1_messageEl.textContent = "Gewonnen!";
+        card.style.setProperty("background-image", "url(./medien/backgrounds/card2.png)", "important");
+      
+        m1_messageEl.textContent = "Your good! Watch out little bonehead...";
+        setTimeout(function(){
+            gameLoop()
+            document.getElementById('blurDiv').style.display= 'none';
+            document.getElementById('minigame1_geier').style.display= 'none';
+            moneyRefresh(8);
+            document.getElementById('Objekt13').style.display= 'none'
+            document.getElementById('goalDotMap').style.left = 74+'px';
+            document.getElementById('goalDotMap').style.top = 111+'px';
+        },2000)
     } else {
-      card.textContent = "💀";
-      card.style.backgroundColor = "#fcc";
-      m1_messageEl.textContent = "Falsch! Mische neu...";
-      setTimeout(m1_resetGame, 1000);
+        card.style.setProperty("background-image", "url(./medien/backgrounds/card3.png)", "important");
+        m1_messageEl.textContent = "Wrong HAHA! The lord is mercyfull; I´ll gve you another chance...";
+        setTimeout(m1_resetGame, 2000);
     }
 }
 

@@ -464,30 +464,69 @@ body{
     position: fixed;
     top: 0;
     left: 0;
+    
+    grid-template-columns: 75% 25%;
+
 }
+#chaBoxBlur{
+    margin-top: 10vh;
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.speech-bubble {
+    background-image: url(../medien/items/speechB.png); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 48vw;
+    height: 70vh;
+    image-rendering: pixelated;
+    margin-top: 5vh;
+    margin-left: 10vh;
+    padding-top: 15vh;
+    padding-left: 5vw;
+    padding-right: 5vw;
+}
+.speech-bubble h1{
+    z-index: 11000;
+    margin-top: 1vh;
+    font-size: 250%;
+}
+  
 /*Minigame1:*/
 #minigame1_geier {
     text-align: center;
+    display: none;
     padding: 20px;
+    z-index: 12000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
 }
 
 #m1_cards {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 50px;
     margin-top: 20px;
 }
 
 .m1_card {
-    width: 80px;
-    height: 120px;
-    border: 2px solid #000;
+    width: 20vw;
+    height: 60vh;
+    
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 40px;
+    
     cursor: pointer;
-    background-color: #fff;
+    background-image: url(../medien/backgrounds/card.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
     user-select: none;
 }
 
@@ -496,5 +535,5 @@ body{
 }
 
 #m1_message {
-    font-size: 18px;
+    font-size: 200%
 }
