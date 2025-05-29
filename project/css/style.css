@@ -443,6 +443,9 @@ body{
     z-index: 9999;
 }
 /*Talk-to-sb:*/
+#Objekt15{
+    display: none;
+}
 .talk-box {
     position: absolute;
     background-color: var(--color-main);

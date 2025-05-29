@@ -49,8 +49,13 @@ function keyListenerUp(e) {
 
 document.addEventListener("keydown", function (event) {
     if (event.code === "ControlRight" && talkBox ) {
-      if(PLAYER.level== 0){
+      if(PLAYER.coins== 0){
         openConvo(1);
+      }else if (isColliding(PLAYER.box,document.getElementById('Objekt14'),-150)){
+        switchToShop()
+        breakGameLoop()
+        PLAYER.playedTimes++;
+        
       }
     }
   });

@@ -32,12 +32,21 @@ function checkCollision() {
             document.getElementById('Objekt'+i).style.animation = 'goalDot 2s ease-in-out infinite';
         }else document.getElementById('Objekt'+i).style.animation = 'none';
     }
+    
+    
     if(isColliding(PLAYER.box,document.getElementById('Objekt13'),-150)){
         toggleBox(1,13)
         
-    }else toggleBox(2,13);
-   
-    
+    }else if(isColliding(PLAYER.box,document.getElementById('Objekt14'),-150)){
+        toggleBox(1,14)
+        if(PLAYER.level == 1){
+            
+        }
+    }
+    else {
+        toggleBox(2,13);
+        toggleBox(2,14)
+    }
     return false;
 }
 

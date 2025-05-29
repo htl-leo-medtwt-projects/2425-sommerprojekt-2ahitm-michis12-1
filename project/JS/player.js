@@ -7,7 +7,7 @@ let PLAYER = {
     spriteImg: document.getElementById('spriteImg'),
     spriteImgNumber: 0, 
     spriteDirection: 1,
-    coins: 6,
+    coins: 0,
     name: "placeholder",
     level: 0,
     inHorseState: false,
