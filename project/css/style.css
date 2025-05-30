@@ -540,3 +540,60 @@ body{
 #m1_message {
     font-size: 200%
 }
+/*Minigame2:*/
+#minigame2_farmer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url(../medien/backgrounds/farmerminibg.png);
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+    z-index: 12000;
+}
+
+#m2_gameArea {
+    text-align: center;
+}
+
+#m2_barContainer {
+    position: relative;
+    right: 30vw;
+    top: 35vh;
+    width: 300px;
+    height: 30px;
+    background-color: #dddddde2;
+    margin: 20px auto;
+    border: 5px solid #000000;
+    overflow: hidden;
+}
+
+#m2_powerBar {
+    position: absolute;
+    width: 10px;
+    height: 100%;
+    background-color: rgb(0, 0, 0);
+    left: 0;
+    transition: none;
+}
+
+#m2_targetZone {
+    position: absolute;
+    left: 140px;
+    width: 15px;
+    height: 100%;
+    background-color: rgb(54, 253, 54);
+    opacity: 0.4;
+}
+
+#m2_result {
+    font-size: 200%;
+    font-family: westFont;
+    margin-top: 20px;
+    position: relative;
+    bottom: 50vh;
+}

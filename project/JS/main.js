@@ -291,8 +291,9 @@ function toggleBox(state, cha) {
         talkBox = document.createElement("div");
         talkBox.className = "talk-box";
         if(cha == 13){
-            talkBox.innerText = "Talk to Georgino Mc Gregor\n[STRG drücken]";
-        }else if(cha == 14) talkBox.innerText = "Enter the store to buy items\n[STRG drücken]";
+            talkBox.innerText = "Talk to Georgino Mc Gregor\n[STRG]";
+        }else if(cha == 14) talkBox.innerText = "Enter the store to buy items\n[STRG]";
+        else if(cha == 15) talkBox.innerText = "Talk to Conoral Ruffs\n[STRG]"
         document.getElementById("map").appendChild(talkBox);
         const imgRect = img.getBoundingClientRect();
         const mapRect = document.getElementById("map").getBoundingClientRect();
@@ -395,4 +396,59 @@ function m1_handleCardClick(e) {
 
 m1_cards.forEach(card => {
     card.addEventListener("click", m1_handleCardClick);
+});
+//Minigame 2-------------------
+const m2_powerBar = document.getElementById("m2_powerBar");
+const m2_result = document.getElementById("m2_result");
+
+let m2_position = 0;
+let m2_direction = 1;
+let m2_interval = null;
+let m2_keyHeld = false;
+
+function m2_startPowerBar() {
+    m2_interval = setInterval(() => {
+        m2_position += m2_direction * 6;
+        if (m2_position >= 270 || m2_position <= 0) {
+        m2_direction *= -1;
+        }
+        m2_powerBar.style.left = m2_position + "px";
+    }, 16);
+}
+
+function m2_stopPowerBar() {
+    clearInterval(m2_interval);
+    m2_interval = null;
+
+    const centerMin = 140;
+    const centerMax = 150;
+    const nearMin = 105;
+    const nearMax = 195;
+
+    if (m2_position >= centerMin && m2_position <= centerMax) {
+        m2_result.textContent = "You won the horse! Congrats";
+    } else if (m2_position >= nearMin && m2_position <= nearMax) {
+        m2_result.textContent = "You won the gold! Try better to earn the Horse aswell...";
+    } else {
+        m2_result.textContent = "Try again";
+    }
+    setTimeout(() => {
+        m2_result.textContent = "Press and hold [STRG]";
+        m2_position = 0;
+        m2_powerBar.style.left = "0px";
+        m2_direction = 1;
+    }, 1500);
+}
+window.addEventListener("keydown", (e) => {
+    if (e.code === "ControlRight" && !m2_keyHeld) {
+        m2_keyHeld = true;
+        m2_startPowerBar();
+    }
+});
+
+window.addEventListener("keyup", (e) => {
+    if (e.code === "ControlRight" && m2_keyHeld) {
+        m2_keyHeld = false;
+        m2_stopPowerBar();
+    }
 });
