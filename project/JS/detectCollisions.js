@@ -41,6 +41,9 @@ function checkCollision() {
         toggleBox(1,14)
         if(PLAYER.level == 1){
             document.getElementById('Objekt15').style.display = 'block';
+            document.getElementById('Objekt16').style.display = 'block';
+            document.getElementById('goalDotMap').style.left = 118+'px';
+            document.getElementById('goalDotMap').style.top = 112+'px';
         }
     }else if(isColliding(PLAYER.box,document.getElementById('Objekt15'),-150)){
         toggleBox(1,15)

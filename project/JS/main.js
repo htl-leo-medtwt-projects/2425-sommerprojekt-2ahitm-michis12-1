@@ -25,15 +25,21 @@ function switchToSave(){
     killSides();
     document.getElementById('savedGames_side').style.display = 'block'
 }
-function switchToPlay(){
+function switchToPlay(nmb){
     killSides();
     document.getElementById('world_side').style.display = 'block'
     document.getElementById('world_side').style.visibility = 'visible';
-    setTimeout(function(){
+    if(nmb == 1){
+        setTimeout(function(){
+            document.getElementById('loadingSc').style.display = 'none';
+            gameLoop()
+            PLAYER.startGame = true;
+        },4500)
+    }else{
         document.getElementById('loadingSc').style.display = 'none';
         gameLoop()
-        PLAYER.startGame = true;
-    },4500)
+    }
+    
     if(PLAYER.throwAchievement){
         setTimeout(function(){
             showAchievement()
@@ -73,7 +79,7 @@ function killSides(){
 }
 // **** Basic Functions ****
 function startSavedGame(gameId){
-    switchToPlay();
+    switchToPlay(1);
 }
 let GAME_CONFIG = {
     gameSpeed: 10, 
@@ -267,7 +273,7 @@ function showHelp(nmb) {
 let buttonCh = document.getElementById('changeButton')
 let nmb = 1
 function changedButton(){
-    if(PLAYER.level > 0){
+    if(PLAYER.unlockedHorse){
         if(nmb == 1 ){
             buttonCh.src = './medien/items/hatToHorse.gif'
             nmb++;
@@ -306,22 +312,27 @@ function toggleBox(state, cha) {
     }
 }
 let continueConvoIndex= 0;
+function deleteConvo(){
+    let i = 0;
+    let deletingPro =setInterval(function(){
+        i++;
+        document.getElementById('convoTxt'+i).innerHTML = '';
+        if(i==3){
+           clearInterval(deletingPro);
+        }
+    },120) 
+}
 function openConvo(nmb){
+    
     if(nmb== 1){
+
         if(continueConvoIndex == 0){
             document.getElementById('blurDiv').style.display= 'grid';
             breakGameLoop()
             document.getElementById('chaBoxBlur').style.backgroundImage = "url('./medien/cha/character1.png')";
             continueConvoIndex++;
         }else if(continueConvoIndex == 1){
-            let i = 0;
-            let deletingPro =setInterval(function(){
-                i++;
-                document.getElementById('convoTxt'+i).innerHTML = '';
-                if(i==3){
-                   clearInterval(deletingPro);
-                }
-            },120) 
+            deleteConvo()
             let j = 4
             
             setTimeout(function(){
@@ -346,7 +357,104 @@ function openConvo(nmb){
         }else if(continueConvoIndex== 2){
             document.getElementById('blurDiv').innerHTML = '';
             document.getElementById('minigame1_geier').style.display= 'block';
+            continueConvoIndex = 0;
             
+        }
+        
+    }else if (nmb == 2){
+        if(continueConvoIndex == 0){
+            document.getElementById('blurDiv').innerHTML= `
+                <div id="mesBoxBlur">
+                    <div class="speech-bubble">
+                        <h1 id="convoTxt1">Hey there friend, nice hat!</h1>
+                        <h1 id="convoTxt2">Why are you crosing the desert all alone?</h1>
+                        <h1 id="convoTxt3">I need to get rid of this horse... it´s stuborn</h1>
+                        <h1 id="convoTxt4">[STRG]</h1>
+                    </div>
+                </div>
+                <div id="chaBoxBlur"></div>`
+            document.getElementById('blurDiv').style.display= 'grid';
+            breakGameLoop()
+            document.getElementById('chaBoxBlur').style.backgroundImage = "url('./medien/cha/character2.png')";
+            continueConvoIndex++;
+        }else  if (continueConvoIndex == 1){
+            deleteConvo()
+            let j = 4
+            
+            setTimeout(function(){
+                let convo2 = setInterval(() => {
+                    j--;
+                    console.log(j)
+                    if(j==3){
+                        document.getElementById('convoTxt'+j).innerHTML=  'Let´s have fun! Are you ready?'
+                        
+                    }else if (j==2){
+                        document.getElementById('convoTxt'+j).innerHTML=  'You´ll get 10 tries. Hit the target and you´ll get some gold plus the horse! Otherwhise you´ll get nothing...'
+                    }else if(j==1){
+                        document.getElementById('convoTxt'+j).innerHTML= 'I´ll give you an hoop iron; throw it at the target!'
+                        clearInterval(convo2)
+                    }
+                
+                }, 120);
+            },361)
+            continueConvoIndex++;
+        }else if(continueConvoIndex== 2){
+            
+            document.getElementById('minigame2_farmer').style.display= 'flex';
+            PLAYER.isPlayingMin2 = true;
+            continueConvoIndex++;
+            deleteConvo()
+        }else if (continueConvoIndex== 3){
+            
+            if(PLAYER.unlockedHorse){
+                let j = 4
+            
+                setTimeout(function(){
+                    let convo2 = setInterval(() => {
+                        j--;
+                        console.log(j)
+                        if(j==3){
+                            document.getElementById('convoTxt'+j).innerHTML=  'See you , stranger!'
+                            
+                        }else if (j==2){
+                            document.getElementById('convoTxt'+j).innerHTML=  'Fine you´ll get the Horse and some money to take care of it...'
+                        }else if(j==1){
+                            document.getElementById('convoTxt'+j).innerHTML= 'You´re better than i thought.'
+                            clearInterval(convo2)
+                        }
+                    
+                    }, 120);
+                },361)
+                
+            }else{
+                let j = 4
+            
+                setTimeout(function(){
+                    let convo2 = setInterval(() => {
+                        j--;
+                        console.log(j)
+                        if(j==3){
+                            document.getElementById('convoTxt'+j).innerHTML=  'See you , stranger!'
+                            
+                        }else if (j==2){
+                            document.getElementById('convoTxt'+j).innerHTML=  'I´ll keep my horse take this money instead!'
+                        }else if(j==1){
+                            document.getElementById('convoTxt'+j).innerHTML= 'I tought you were better...'
+                            clearInterval(convo2)
+                        }
+                    
+                    }, 120);
+                },361)
+            }
+            continueConvoIndex++;
+
+        }else if(continueConvoIndex== 4){
+            document.getElementById('blurDiv').style.display = 'none'
+            moneyRefresh(25);
+            continueConvoIndex = 0;
+            document.getElementById('Objekt15').style.display = 'none'
+            document.getElementById('Objekt16').style.display = 'none'
+            gameLoop()
         }
         
     }
@@ -415,7 +523,8 @@ function m2_startPowerBar() {
         m2_powerBar.style.left = m2_position + "px";
     }, 16);
 }
-
+let m2_won = false;
+let m2_tries = 10;
 function m2_stopPowerBar() {
     clearInterval(m2_interval);
     m2_interval = null;
@@ -424,20 +533,42 @@ function m2_stopPowerBar() {
     const centerMax = 150;
     const nearMin = 105;
     const nearMax = 195;
-
+    m2_tries--;
     if (m2_position >= centerMin && m2_position <= centerMax) {
         m2_result.textContent = "You won the horse! Congrats";
+        document.getElementById('m2_result').style.animation = 'hitTarget 0.5s infinite ease'
+        document.getElementById('trowableIron').style.animation = 'trow1 0.6s 1 linear'
+        m2_won = true;
+        unlockedHorse= true;
+        PLAYER.isPlayingMin2= false
+        setTimeout(function(){
+            document.getElementById('minigame2_farmer').style.display = 'none'
+        },2000)
     } else if (m2_position >= nearMin && m2_position <= nearMax) {
         m2_result.textContent = "You won the gold! Try better to earn the Horse aswell...";
+        document.getElementById('trowableIron').style.animation = 'trow2 0.6s 1 linear'
+
     } else {
         m2_result.textContent = "Try again";
+        document.getElementById('trowableIron').style.animation = 'trow3 0.7s 1 linear'
+
     }
-    setTimeout(() => {
-        m2_result.textContent = "Press and hold [STRG]";
-        m2_position = 0;
-        m2_powerBar.style.left = "0px";
-        m2_direction = 1;
-    }, 1500);
+    if(!m2_won){
+        setTimeout(() => {
+            if(m2_tries == 0){
+                document.getElementById('minigame2_farmer').style.display = 'none'
+                PLAYER.isPlayingMin2= false
+            }
+            m2_result.textContent = "Press and hold [STRG]";
+            m2_position = 0;
+            m2_powerBar.style.left = "0px";
+            m2_direction = 1;
+            document.getElementById('trowableIron').style.animation = 'none'
+    
+        }, 1500);
+    }
+    
+    
 }
 window.addEventListener("keydown", (e) => {
     if (e.code === "ControlRight" && !m2_keyHeld) {

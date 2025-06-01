@@ -16,10 +16,12 @@ let PLAYER = {
     coY: 9350,
     spriteDiff: 320,
     horseSpeed: 22,
-    walkSpeed: 12,
+    walkSpeed: 52,
     startGame: false,
     throwAchievement: false,
-    playedTimes: 1
+    playedTimes: 1,
+    unlockedHorse : false,
+    isPlayingMin2: false
 }
 let GAME_DATA1 = {
 

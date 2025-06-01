@@ -549,7 +549,7 @@ body{
     height: 100vh;
     background-image: url(../medien/backgrounds/farmerminibg.png);
     background-size: cover;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     font-family: sans-serif;
@@ -581,6 +581,15 @@ body{
     transition: none;
 }
 
+#trowableIron{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    left: 17vw;
+    top: 46vh;
+    animation: none;
+}
+
 #m2_targetZone {
     position: absolute;
     left: 140px;
@@ -596,4 +605,67 @@ body{
     margin-top: 20px;
     position: relative;
     bottom: 50vh;
+    animation: none;
 }
+
+@keyframes trow1 {
+    0%{
+        width: 100px;
+        height: 100px;
+        left: 17vw;
+        top: 46vh;
+    }
+    100%{
+        width: 80px;
+        height: 80px;
+        left: 76vw;
+        top: 48vh;
+        transform: rotate(900deg)
+    }
+}
+@keyframes trow2 {
+    0%{
+        width: 100px;
+        height: 100px;
+        left: 17vw;
+        top: 46vh;
+    }
+    100%{
+        width: 80px;
+        height: 80px;
+        left: 76vw;
+        top: 60vh;
+        transform: rotate(900deg)
+    }
+}
+@keyframes trow3 {
+    0%{
+        width: 100px;
+        height: 100px;
+        left: 17vw;
+        top: 46vh;
+    }
+    100%{
+        width: 80px;
+        height: 80px;
+        left: 100vw;
+        top: 20vh;
+        transform: rotate(900deg)
+    }
+}
+
+@keyframes hitTarget {
+    0%{
+        color: black;
+        font-size: 200%;
+    }
+    50%{
+        color: gold;
+        font-size: 250%;
+    }
+    100%{
+        color: #000000;
+        font-size: 200%;
+    }
+}
+
