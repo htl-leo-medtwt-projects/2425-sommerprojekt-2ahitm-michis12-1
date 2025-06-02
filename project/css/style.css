@@ -668,4 +668,49 @@ body{
         font-size: 200%;
     }
 }
+/*Minigame3---------*/
+
+#minigame3_memory {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 120002;
+    font-size: 1,5em;
+}
+
+#m3_gameboard {
+    display: grid;
+    grid-template-columns: repeat(4, 130px);
+    gap: 38px;
+    margin-top: 20px;
+}
+
+.m3_card {
+    width: 105px;
+    height: 180px;
+    background-image: url(../medien/items/mem/img.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    background-size: cover;
+    background-position: center;
+}
+
+.m3_card.revealed {
+    
+}
+
+#m3_result {
+    margin-top: 20px;
+    margin-left: 20px;
+    
+}
 

@@ -21,13 +21,13 @@ function isColliding(div1, div2, tolerance = 0) {
 function checkCollision() {
     let tolerance = 40;
     if(PLAYER.inHorseState) tolerance = 120
-    for (let i = 1; i <= 16; i++) {
+    for (let i = 1; i <= 17; i++) {
         const objekt = document.getElementById(`Objekt${i}`);
         if (objekt && isColliding(PLAYER.box, objekt, tolerance)) {
             return true;
         }
     }
-    for(let i = 12; i <= 15;i++){
+    for(let i = 12; i <= 17;i++){
         if(isColliding(PLAYER.box,document.getElementById('Objekt'+i),-250)){
             document.getElementById('Objekt'+i).style.animation = 'goalDot 2s ease-in-out infinite';
         }else document.getElementById('Objekt'+i).style.animation = 'none';
@@ -47,11 +47,14 @@ function checkCollision() {
         }
     }else if(isColliding(PLAYER.box,document.getElementById('Objekt15'),-150)){
         toggleBox(1,15)
+    }else if(isColliding(PLAYER.box,document.getElementById('Objekt17'),-150)){
+        toggleBox(1,17)
     }
     else {
         toggleBox(2,13);
         toggleBox(2,14);
         toggleBox(2,15);
+        toggleBox(2,17);
     }
     return false;
 }

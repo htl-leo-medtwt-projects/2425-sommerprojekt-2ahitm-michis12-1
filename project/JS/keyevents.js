@@ -59,6 +59,8 @@ document.addEventListener("keydown", function (event) {
         
       }else if (isColliding(PLAYER.box,document.getElementById('Objekt15'),-150) && getComputedStyle(game2).display === 'none' && !PLAYER.isPlayingMin2){
         openConvo(2);
+      }else if (isColliding(PLAYER.box,document.getElementById('Objekt17'),-150)    ){
+        openConvo(3);
       }
     }
   });

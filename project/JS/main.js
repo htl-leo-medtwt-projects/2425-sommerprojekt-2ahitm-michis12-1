@@ -300,6 +300,7 @@ function toggleBox(state, cha) {
             talkBox.innerText = "Talk to Georgino Mc Gregor\n[STRG]";
         }else if(cha == 14) talkBox.innerText = "Enter the store to buy items\n[STRG]";
         else if(cha == 15) talkBox.innerText = "Talk to Conoral Ruffs\n[STRG]"
+        else if (cha == 17) talkBox.innerText = "Talk to Ronaldinho Bandito\n[STRG]"
         document.getElementById("map").appendChild(talkBox);
         const imgRect = img.getBoundingClientRect();
         const mapRect = document.getElementById("map").getBoundingClientRect();
@@ -457,6 +458,71 @@ function openConvo(nmb){
             gameLoop()
         }
         
+    }else if(nmb == 3){
+        if(continueConvoIndex == 0){
+            document.getElementById('blurDiv').innerHTML= `
+                <div id="mesBoxBlur">
+                    <div class="speech-bubble">
+                        <h1 id="convoTxt1">I need help!!!</h1>
+                        <h1 id="convoTxt2">I mixed my Wanted-Bills together...</h1>
+                        <h1 id="convoTxt3">Can you find the right ones??</h1>
+                        <h1 id="convoTxt4">[STRG]</h1>
+                    </div>
+                </div>
+                <div id="chaBoxBlur"></div>`
+            document.getElementById('blurDiv').style.display= 'grid';
+            breakGameLoop()
+            document.getElementById('chaBoxBlur').style.backgroundImage = "url('./medien/cha/character3.png')";
+            continueConvoIndex++;
+        }else if (continueConvoIndex == 1){
+            deleteConvo()
+            let j = 4
+            setTimeout(function(){
+                let convo2 = setInterval(() => {
+                    j--;
+                    console.log(j)
+                    if(j==3){
+                        document.getElementById('convoTxt'+j).innerHTML=  'Are you ready?'
+                        
+                    }else if (j==2){
+                        document.getElementById('convoTxt'+j).innerHTML=  'Find the right pairs.'
+                    }else if(j==1){
+                        document.getElementById('convoTxt'+j).innerHTML= 'Hurry! I cant be seen around here...'
+                        clearInterval(convo2)
+                    }
+                
+                }, 120);
+            },361)
+            continueConvoIndex++;
+        }else if(continueConvoIndex == 2){
+            continueConvoIndex++;
+            deleteConvo()
+            document.getElementById('minigame3_memory').style.display = 'flex'
+            m3_startGame()
+        }else{
+            let j = 4
+            setTimeout(function(){
+                let convo2 = setInterval(() => {
+                    j--;
+                    console.log(j)
+                    if(j==3){
+                        document.getElementById('convoTxt'+j).innerHTML=  ''
+                        
+                    }else if (j==2){
+                        document.getElementById('convoTxt'+j).innerHTML=  'Take this gold...'
+                    }else if(j==1){
+                        document.getElementById('convoTxt'+j).innerHTML= 'i need to disapear!'
+                        clearInterval(convo2)
+                    }
+                
+                }, 120);
+            },361)
+            document.getElementById('Objekt17').style.display = 'none'
+            setTimeout(function(){
+                document.getElementById('blurBox').style.display = 'none'
+                moneyRefresh(13)
+            },1500)
+        }
     }
 }
 /***********/
@@ -583,3 +649,100 @@ window.addEventListener("keyup", (e) => {
         m2_stopPowerBar();
     }
 });
+//Minigame3-----
+const m3_images = [
+    './medien/items/mem/img1.png', './medien/items/mem/img2.png', './medien/items/mem/img3.png', './medien/items/mem/img4.png',
+    './medien/items/mem/img5.png', './medien/items/mem/img6.png', './medien/items/mem/img1.png', './medien/items/mem/img2.png',
+    './medien/items/mem/img3.png', './medien/items/mem/img4.png', './medien/items/mem/img5.png', './medien/items/mem/img6.png'
+]; 
+
+let m3_shuffled = [];
+let m3_selected = [];
+let m3_matched = 0;
+let m3_timer;
+let m3_timeLeft = 40;
+let m3_canClick = true;
+
+const m3_board = document.getElementById("m3_gameboard");
+const m3_result = document.getElementById("m3_result");
+const m3_timerDisplay = document.getElementById("m3_timer");
+
+function m3_shuffleArray(array) {
+    return array.sort(() => Math.random() - 0.5);
+}
+
+function m3_startGame() {
+    m3_shuffled = m3_shuffleArray([...m3_images]);
+    m3_board.innerHTML = "";
+    m3_selected = [];
+    m3_matched = 0;
+    m3_result.textContent = "";
+    m3_canClick = true;
+
+    m3_shuffled.forEach((img, index) => {
+        const card = document.createElement("div");
+        card.classList.add("m3_card");
+        card.dataset.image = img;
+        card.dataset.index = index;
+        card.addEventListener("click", m3_cardClick);
+        m3_board.appendChild(card);
+    });
+
+    m3_timeLeft = 40;
+    m3_timerDisplay.textContent = "Time: " + m3_timeLeft;
+    clearInterval(m3_timer);
+    m3_timer = setInterval(() => {
+        m3_timeLeft--;
+        m3_timerDisplay.textContent = "Time: " + m3_timeLeft;
+        if (m3_timeLeft <= 0) {
+            clearInterval(m3_timer);
+            m3_result.textContent = "Times up! Try again...";
+            m3_canClick = false;
+            setTimeout(function(){
+                m3_startGame()
+            },1500)
+        }
+    }, 1000);
+}
+
+function m3_cardClick(e) {
+    if (!m3_canClick) return;
+
+    const card = e.currentTarget;
+    const index = card.dataset.index;
+    if (m3_selected.some(sel => sel.index === index)) return;
+
+    card.style.backgroundImage = `url('${card.dataset.image}')`;
+    card.classList.add("revealed");
+
+    m3_selected.push({ index, element: card });
+
+    if (m3_selected.length === 2) {
+        m3_canClick = false;
+
+        const [first, second] = m3_selected;
+
+        if (first.element.dataset.image === second.element.dataset.image) {
+            m3_matched += 2;
+            m3_selected = [];
+            m3_canClick = true;
+            
+            if (m3_matched === m3_images.length) {
+                clearInterval(m3_timer);
+                m3_result.textContent = "Found all!";
+                setTimeout(function(){
+                    document.getElementById('minigame3_memory').style.display = 'none'
+                },1500)
+            }
+            } else {
+            setTimeout(() => {
+                first.element.style.backgroundImage = "";
+                second.element.style.backgroundImage = "";
+                first.element.classList.remove("revealed");
+                second.element.classList.remove("revealed");
+                m3_selected = [];
+                m3_canClick = true;
+            }, 1000);
+        }
+    }
+}
