@@ -64,8 +64,12 @@ function switchToSaloon(){
     document.getElementById('saloon_side').style.display = 'block'
 }
 function openOptions(){
-    document.getElementById('world_side_options').style.display = 'block'
-    
+    document.getElementById('world_side_options').style.display = 'flex'
+    breakGameLoop()
+}
+function closeOptions() {
+    document.getElementById('world_side_options').style.display = 'none';
+    gameLoop()
 }
 function killSides(){
     document.getElementById('start_side').style.display = 'none';
@@ -166,7 +170,7 @@ function breakGameLoop(){
     continueGame= false;
     setTimeout(function(){
         continueGame= true
-    },100)
+    },500)
 }
 //library input for shop:
 
@@ -499,7 +503,6 @@ function openConvo(nmb){
             deleteConvo()
             document.getElementById('minigame3_memory').style.display = 'flex'
             m3_startGame()
-        }else{
             let j = 4
             setTimeout(function(){
                 let convo2 = setInterval(() => {
@@ -517,11 +520,13 @@ function openConvo(nmb){
                 
                 }, 120);
             },361)
+        }else{
+            
             document.getElementById('Objekt17').style.display = 'none'
             setTimeout(function(){
                 
                 document.getElementById('blurDiv').style.display = 'none'
-                moneyRefresh(13)
+                moneyRefresh(17)
             },1500)
         }
     }

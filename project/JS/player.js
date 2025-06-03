@@ -22,16 +22,9 @@ let PLAYER = {
     playedTimes: 1,
     unlockedHorse : false,
     isPlayingMin2: false
+    
 }
-let GAME_DATA1 = {
 
-}
-let GAME_DATA2 = {//Jsons to save Player Data
-
-}
-let GAME_DATA3 = {
-
-}
 
 
 
