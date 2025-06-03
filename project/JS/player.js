@@ -21,8 +21,9 @@ let PLAYER = {
     throwAchievement: false,
     playedTimes: 1,
     unlockedHorse : false,
-    isPlayingMin2: false
-    
+    isPlayingMin2: false,
+    goalDotTop: 190,
+    goalDotLeft: 85
 }
 
 
@@ -45,7 +46,8 @@ function movePlayer(dx, dy, dr) {
         PLAYER.spriteDirection = dr;
         PLAYER.box.style.transform = `translate(-50%, -50%) scaleX(${dr})`; 
     }
-       
+    PLAYER.coX = CAMERA.x;
+    PLAYER.coY = CAMERA.y;
 }
 /***********************************
  * MOVE-MAP

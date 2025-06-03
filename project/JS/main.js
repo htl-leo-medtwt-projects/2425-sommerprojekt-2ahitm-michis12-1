@@ -4,6 +4,7 @@
 /*********************/
 killSides()
 switchToStart()
+setGoalDot(PLAYER.goalDotLeft, PLAYER.goalDotTop)
 // **** Hover ****
 function loadPlayButton() {
     document.getElementById('buttonPlayImg').src = "./medien/items/revolver (1).gif";
@@ -15,17 +16,21 @@ function unLoadPlayButton() {
 // **** Side switch functions ****
 function switchToSettings(){
     killSides();
+    savePlayerData()
     document.getElementById('settings_side').style.display = 'block'
 }
 function switchToStart(){
     killSides();
+    savePlayerData()
     document.getElementById('start_side').style.display = 'block'
+
 }
 function switchToSave(){
     killSides();
     document.getElementById('savedGames_side').style.display = 'block'
 }
 function switchToPlay(nmb){
+    
     killSides();
     document.getElementById('world_side').style.display = 'block'
     document.getElementById('world_side').style.visibility = 'visible';
@@ -62,7 +67,80 @@ function switchToShop(){
 function switchToSaloon(){
     killSides();
     document.getElementById('saloon_side').style.display = 'block'
+    deleteConvo()
+    setTimeout(function(){
+        document.getElementById('blurDiv').style.display= 'grid';
+        document.getElementById('chaBoxBlur').style.backgroundImage = "url('./medien/cha/character4.png')";
+        
+        let j = 4
+            
+        setTimeout(function(){
+            let convo2 = setInterval(() => {
+                j--;
+                console.log(j)
+                if(j==3){
+                    document.getElementById('convoTxt'+j).innerHTML=  'Welcome to the saloon cowboy...'
+                    
+                }else if (j==2){
+                    document.getElementById('convoTxt'+j).innerHTML=  'Nice gun, you got there'
+                }else if(j==1){
+                    document.getElementById('convoTxt'+j).innerHTML= 'Shhheeyuu!'
+                    clearInterval(convo2)
+                }
+            
+            }, 120);
+        },361)
+        setTimeout(function(){
+            document.getElementById('blurDiv').style.display= 'none';
+            document.getElementById('saloon_side').style.backgroundImage = "url('./medien/backgrounds/endBG.png')";
+
+            setTimeout(function(){
+                showCongratsCowboy()
+            },500)
+        },5000)
+    },1000)
+    
 }
+function lastSwitch(){
+    switchToStart()
+    resetPlayerData()
+}
+function showCongratsCowboy() {
+    const congrats = document.createElement('div');
+    congrats.textContent = 'Respect Cowboy';
+    congrats.id = 'congratsCowboy';
+  
+    Object.assign(congrats.style, {
+      position: 'fixed',
+      left: '-700px',
+      top: '50px',
+      fontSize: '930%',
+      fontWeight: 'bold',
+      color: 'black',
+      padding: '10px 20px',
+      zIndex: 14000,
+      transition: 'left 1s ease-out',
+    });
+    const resetButton = document.createElement('div');
+    resetButton.textContent = 'Reset Game';
+    resetButton.classList.add('button');
+    resetButton.style.zIndex = '14000';
+    resetButton.style.position = 'absolute'
+    resetButton.style.left = '50px'
+    resetButton.style.bottom = '50px'
+    resetButton.onclick = () => {
+        lastSwitch();
+        congrats.style.display = 'none'
+        resetButton.style.display = 'none'
+    }
+    document.body.appendChild(congrats);
+    document.body.appendChild(resetButton);
+    setTimeout(() => {
+      congrats.style.left = '50px';
+    }, 100);
+
+  }
+  
 function openOptions(){
     document.getElementById('world_side_options').style.display = 'flex'
     breakGameLoop()
@@ -89,6 +167,116 @@ let GAME_CONFIG = {
     gameSpeed: 10, 
     characterSpeed: 12,  
 }
+function setGoalDot(nmb1, nmb2){
+    document.getElementById('goalDotMap').style.left = nmb1+'px';
+    document.getElementById('goalDotMap').style.top = nmb2+'px';
+    PLAYER.goalDotLeft = nmb1;
+    PLAYER.goalDotTop = nmb2;
+}
+// **** localStorage ****
+function savePlayerData() {
+    const playerData = {
+        coX: PLAYER.coX,
+        coY: PLAYER.coY,
+        coins: PLAYER.coins,
+        level: PLAYER.level,
+        name: PLAYER.name,
+        spriteDirection: PLAYER.spriteDirection,
+        inHorseState: PLAYER.inHorseState,
+        unlockedHorse: PLAYER.unlockedHorse,
+        playedTimes: PLAYER.playedTimes,
+        throwAchievement: PLAYER.throwAchievement,
+        isPlayingMin2: PLAYER.isPlayingMin2,
+        walkSpeed: PLAYER.walkSpeed,
+        horseSpeed: PLAYER.horseSpeed,
+        goalDotTop: PLAYER.goalDotTop,
+        goalDotLeft: PLAYER.goalDotLeft
+
+    };
+    localStorage.setItem("playerData", JSON.stringify(playerData));
+    const saveBox = document.getElementById("saveBox2");
+    const plusImg = saveBox.querySelector(".plusImg");
+    if (plusImg) plusImg.remove();
+
+    const oldInfo = saveBox.querySelector("h1.saveInfo");
+    if (oldInfo) oldInfo.remove();
+
+    const info = document.createElement("h1");
+    info.classList.add("saveInfo");
+    info.textContent = `Level: ${PLAYER.level} | Coins: ${PLAYER.coins}`;
+    saveBox.appendChild(info);
+
+}
+function loadPlayerData() {
+    const data = localStorage.getItem("playerData");
+    if (data) {
+        const playerData = JSON.parse(data);
+        PLAYER.coX = playerData.coX ?? PLAYER.coX;
+        PLAYER.coY = playerData.coY ?? PLAYER.coY;
+        PLAYER.coins = playerData.coins ?? PLAYER.coins;
+        PLAYER.level = playerData.level ?? PLAYER.level;
+        PLAYER.name = playerData.name ?? PLAYER.name;
+        PLAYER.spriteDirection = playerData.spriteDirection ?? PLAYER.spriteDirection;
+        PLAYER.inHorseState = playerData.inHorseState ?? PLAYER.inHorseState;
+        PLAYER.unlockedHorse = playerData.unlockedHorse ?? PLAYER.unlockedHorse;
+        PLAYER.playedTimes = playerData.playedTimes ?? PLAYER.playedTimes;
+        PLAYER.throwAchievement = playerData.throwAchievement ?? PLAYER.throwAchievement;
+        PLAYER.isPlayingMin2 = playerData.isPlayingMin2 ?? PLAYER.isPlayingMin2;
+        PLAYER.walkSpeed = playerData.walkSpeed ?? PLAYER.walkSpeed;
+        PLAYER.horseSpeed = playerData.horseSpeed ?? PLAYER.horseSpeed;
+        PLAYER.goalDotTop = playerData.goalDotTop ?? PLAYER.goalDotTop;
+        PLAYER.goalDotLeft = playerData.goalDotLeft ?? PLAYER.goalDotLeft;
+
+
+        CAMERA.x = PLAYER.coX;
+        CAMERA.y = PLAYER.coY;
+        map.style.left = -CAMERA.x + 'px';
+        map.style.top = -CAMERA.y + 'px';
+        updateMinimapViewport();
+    }
+}
+function resetPlayerData() {
+    localStorage.removeItem("playerData");
+
+    PLAYER.coX = 1400;
+    PLAYER.coY = 9350;
+    PLAYER.coins = 0;
+    PLAYER.level = 0;
+    PLAYER.name = "placeholder";
+    PLAYER.spriteDirection = 1;
+    PLAYER.inHorseState = false;
+    PLAYER.unlockedHorse = false;
+    PLAYER.playedTimes = 1;
+    PLAYER.throwAchievement = false;
+    PLAYER.isPlayingMin2 = false;
+    PLAYER.walkSpeed = 52;
+    PLAYER.horseSpeed = 22;
+    PLAYER.goalDotTop = 190;
+    PLAYER.goalDotLeft = 85;
+
+
+    CAMERA.x = PLAYER.coX;
+    CAMERA.y = PLAYER.coY;
+    map.style.left = -CAMERA.x + 'px';
+    map.style.top = -CAMERA.y + 'px';
+    updateMinimapViewport();
+
+    
+    const saveBox = document.getElementById("saveBox2");
+
+    const info = saveBox.querySelector("h1.saveInfo");
+    if (info) info.remove();
+
+    if (!saveBox.querySelector(".plusImg")) {
+        const img = document.createElement("img");
+        img.classList.add("plusImg");
+        img.src = "./medien/items/plus.png";
+        img.alt = "plus";
+        saveBox.appendChild(img);
+    }
+    console.log("Reseted Player Data Successfull!");
+}
+
 // **** Main Game Loop ****
 let isStanding= false;
 let continueGame = true;
@@ -210,7 +398,7 @@ function buyItem(nmb){
             PLAYER.throwAchievement = true;
         }else errorBuy();
     }else {
-        if(PLAYER.level == 2 && PLAYER.coins > 30){
+        if(PLAYER.level == 2 && PLAYER.coins >= 30){
             PLAYER.level++;
             moneyRefresh(-30);
             //boughtSound
@@ -564,8 +752,7 @@ function m1_handleCardClick(e) {
             document.getElementById('minigame1_geier').style.display= 'none';
             moneyRefresh(8);
             document.getElementById('Objekt13').style.display= 'none'
-            document.getElementById('goalDotMap').style.left = 74+'px';
-            document.getElementById('goalDotMap').style.top = 111+'px';
+            setGoalDot(74,111)
         },2000)
     } else {
         card.style.setProperty("background-image", "url(./medien/backgrounds/card3.png)", "important");
@@ -613,8 +800,7 @@ function m2_stopPowerBar() {
         m2_won = true;
         PLAYER.unlockedHorse= true;
         PLAYER.isPlayingMin2= false
-        document.getElementById('goalDotMap').style.left = 74+'px';
-        document.getElementById('goalDotMap').style.top = 111+'px';
+        setGoalDot(74,111)
         setTimeout(function(){
             document.getElementById('minigame2_farmer').style.display = 'none'
         },2000)
@@ -738,8 +924,7 @@ function m3_cardClick(e) {
             if (m3_matched === m3_images.length) {
                 clearInterval(m3_timer);
                 m3_result.textContent = "Found all!";
-                document.getElementById('goalDotMap').style.left = 74+'px';
-                document.getElementById('goalDotMap').style.top = 111+'px';
+                setGoalDot(74,111)
                 gameLoop()
                 setTimeout(function(){
                     document.getElementById('minigame3_memory').style.display = 'none'
@@ -757,3 +942,8 @@ function m3_cardClick(e) {
         }
     }
 }
+// **** save before leave ****
+window.addEventListener("beforeunload", savePlayerData);
+window.onload = function () {
+    loadPlayerData();
+};

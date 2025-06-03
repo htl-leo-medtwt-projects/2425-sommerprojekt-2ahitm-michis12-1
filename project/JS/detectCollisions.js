@@ -42,17 +42,14 @@ function checkCollision() {
         if(PLAYER.level == 1){
             document.getElementById('Objekt15').style.display = 'block';
             document.getElementById('Objekt16').style.display = 'block';
-            document.getElementById('goalDotMap').style.left = 118+'px';
-            document.getElementById('goalDotMap').style.top = 112+'px';
+            setGoalDot(118,112);
         }else if(PLAYER.level== 2) {
         
-            document.getElementById('goalDotMap').style.left = 82+'px';
-            document.getElementById('goalDotMap').style.top = 52+'px';
+            setGoalDot(82,52);
         
         }else if(PLAYER.level== 3) {
         
-            document.getElementById('goalDotMap').style.left = 77+'px';
-            document.getElementById('goalDotMap').style.top = 24+'px';
+            setGoalDot(74,24);
         
         }
     }else if(isColliding(PLAYER.box,document.getElementById('Objekt15'),-150)){

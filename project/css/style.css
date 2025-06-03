@@ -85,9 +85,36 @@ body{
     background-image: url(../medien/backgrounds/saloonBG.jpg);
     background-repeat: no-repeat;
     background-size: cover;
-    z-index: 120000;
+    z-index: 11000;
+    
+}
+
+#chaSaloon{
+    background-image: url(../medien/cha/character4.png);
+    width: 25vw;
+    height: 70vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    
 }
 /*+++Settings-Side+++*/
+#resetBtn {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    border: 2px black solid;
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 1000;
+    font-family: westFont;
+  }
+  #resetBtn:hover {
+    background-color: darkred;
+  }
 /*+++Basic Css+++*/
 .layoutBox_basic{
     display: flex;
@@ -279,6 +306,7 @@ body{
     left: 85vw;
     padding: 1.5vh;
 }
+
 /*library*/
 .swiper-slide {
     background-image: url(../medien/backgrounds/shop_item_bg.png);
@@ -480,7 +508,7 @@ body{
 #blurDiv{
     background: rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(10px);
-    z-index: 10001;
+    z-index: 12001;
     display: none;
     width: 100vw;
     height: 100vh;
