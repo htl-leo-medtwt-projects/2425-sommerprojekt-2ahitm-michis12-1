@@ -519,7 +519,8 @@ function openConvo(nmb){
             },361)
             document.getElementById('Objekt17').style.display = 'none'
             setTimeout(function(){
-                document.getElementById('blurBox').style.display = 'none'
+                
+                document.getElementById('blurDiv').style.display = 'none'
                 moneyRefresh(13)
             },1500)
         }
@@ -605,8 +606,10 @@ function m2_stopPowerBar() {
         document.getElementById('m2_result').style.animation = 'hitTarget 0.5s infinite ease'
         document.getElementById('trowableIron').style.animation = 'trow1 0.6s 1 linear'
         m2_won = true;
-        unlockedHorse= true;
+        PLAYER.unlockedHorse= true;
         PLAYER.isPlayingMin2= false
+        document.getElementById('goalDotMap').style.left = 74+'px';
+        document.getElementById('goalDotMap').style.top = 111+'px';
         setTimeout(function(){
             document.getElementById('minigame2_farmer').style.display = 'none'
         },2000)
@@ -625,7 +628,7 @@ function m2_stopPowerBar() {
                 document.getElementById('minigame2_farmer').style.display = 'none'
                 PLAYER.isPlayingMin2= false
             }
-            m2_result.textContent = "Press and hold [STRG]";
+            m2_result.textContent = "Press and hold [Enter]"
             m2_position = 0;
             m2_powerBar.style.left = "0px";
             m2_direction = 1;
@@ -637,18 +640,18 @@ function m2_stopPowerBar() {
     
 }
 window.addEventListener("keydown", (e) => {
-    if (e.code === "ControlRight" && !m2_keyHeld) {
-        m2_keyHeld = true;
-        m2_startPowerBar();
+    if (e.code === "Space" && !m2_keyHeld ) {
+      m2_keyHeld = true;
+      m2_startPowerBar();
     }
-});
-
-window.addEventListener("keyup", (e) => {
-    if (e.code === "ControlRight" && m2_keyHeld) {
-        m2_keyHeld = false;
-        m2_stopPowerBar();
+  });
+  
+  window.addEventListener("keyup", (e) => {
+    if (e.code === "Space" && m2_keyHeld) {
+      m2_keyHeld = false;
+      m2_stopPowerBar();
     }
-});
+  });
 //Minigame3-----
 const m3_images = [
     './medien/items/mem/img1.png', './medien/items/mem/img2.png', './medien/items/mem/img3.png', './medien/items/mem/img4.png',
@@ -730,6 +733,9 @@ function m3_cardClick(e) {
             if (m3_matched === m3_images.length) {
                 clearInterval(m3_timer);
                 m3_result.textContent = "Found all!";
+                document.getElementById('goalDotMap').style.left = 74+'px';
+                document.getElementById('goalDotMap').style.top = 111+'px';
+                gameLoop()
                 setTimeout(function(){
                     document.getElementById('minigame3_memory').style.display = 'none'
                 },1500)

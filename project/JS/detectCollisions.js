@@ -44,6 +44,16 @@ function checkCollision() {
             document.getElementById('Objekt16').style.display = 'block';
             document.getElementById('goalDotMap').style.left = 118+'px';
             document.getElementById('goalDotMap').style.top = 112+'px';
+        }else if(PLAYER.level== 2) {
+        
+            document.getElementById('goalDotMap').style.left = 82+'px';
+            document.getElementById('goalDotMap').style.top = 52+'px';
+        
+        }else if(PLAYER.level== 3) {
+        
+            document.getElementById('goalDotMap').style.left = 77+'px';
+            document.getElementById('goalDotMap').style.top = 24+'px';
+        
         }
     }else if(isColliding(PLAYER.box,document.getElementById('Objekt15'),-150)){
         toggleBox(1,15)

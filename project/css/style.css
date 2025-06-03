@@ -74,6 +74,19 @@ body{
 #shop_side{
     background-image: url(../medien/backgrounds/store_background.png);
 }
+/*+++Saloon-Side+++*/
+#saloon_side{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url(../medien/backgrounds/saloonBG.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 120000;
+}
 /*+++Settings-Side+++*/
 /*+++Basic Css+++*/
 .layoutBox_basic{
@@ -360,6 +373,9 @@ body{
 #world_side_options{
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(8px);
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100vw;
     height: 100vh;
     z-index: 999999;
@@ -684,6 +700,7 @@ body{
     justify-content: center;
     z-index: 120002;
     font-size: 1,5em;
+    color: var(--color-main);
 }
 
 #m3_gameboard {

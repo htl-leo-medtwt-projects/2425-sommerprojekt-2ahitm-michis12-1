@@ -50,17 +50,21 @@ const game2 = document.getElementById('minigame2_farmer');
 document.addEventListener("keydown", function (event) {
     if (event.code === "ControlRight" && talkBox ) {
         console.log('strg--')
-      if(PLAYER.coins== 0){
+      if(PLAYER.coins== 0 && isColliding(PLAYER.box,document.getElementById('Objekt13'),-150)){
         openConvo(1);
       }else if (isColliding(PLAYER.box,document.getElementById('Objekt14'),-150)){
         switchToShop()
         breakGameLoop()
         PLAYER.playedTimes++;
         
+        
       }else if (isColliding(PLAYER.box,document.getElementById('Objekt15'),-150) && getComputedStyle(game2).display === 'none' && !PLAYER.isPlayingMin2){
         openConvo(2);
       }else if (isColliding(PLAYER.box,document.getElementById('Objekt17'),-150)    ){
         openConvo(3);
+      }else if (isColliding(PLAYER.box,document.getElementById('Objekt12'),-150)  && PLAYER.level == 3){
+        switchToSaloon()
+        breakGameLoop()
       }
     }
   });
