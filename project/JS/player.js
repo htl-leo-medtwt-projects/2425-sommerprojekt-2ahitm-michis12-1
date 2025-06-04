@@ -16,7 +16,7 @@ let PLAYER = {
     coY: 9350,
     spriteDiff: 320,
     horseSpeed: 22,
-    walkSpeed: 52,
+    walkSpeed: 12,
     startGame: false,
     throwAchievement: false,
     playedTimes: 1,
@@ -113,11 +113,6 @@ function updateMinimapViewport() {
     
     minimapViewport.style.left = `${scrollX * scale + 16.5}px`;
     minimapViewport.style.top = `${scrollY * scale + 14}px`;
-   /* 
-    let mountain = document.getElementById('miniMapMountain');
-    mountain.style.width = 600*scale+"px";
-    mountain.style.top = 7000*scale+"px"
-    mountain.style.left = 2000*scale+"px"*/
 }
 
 

@@ -249,7 +249,7 @@ function resetPlayerData() {
     PLAYER.playedTimes = 1;
     PLAYER.throwAchievement = false;
     PLAYER.isPlayingMin2 = false;
-    PLAYER.walkSpeed = 52;
+    PLAYER.walkSpeed = 12;
     PLAYER.horseSpeed = 22;
     PLAYER.goalDotTop = 190;
     PLAYER.goalDotLeft = 85;
@@ -492,7 +492,7 @@ function toggleBox(state, cha) {
             talkBox.innerText = "Talk to Georgino Mc Gregor\n[STRG]";
         }else if(cha == 14) talkBox.innerText = "Enter the store to buy items\n[STRG]";
         else if(cha == 15) talkBox.innerText = "Talk to Conoral Ruffs\n[STRG]"
-        else if (cha == 17) talkBox.innerText = "Talk to Ronaldinho Bandito\n[STRG]"
+        else if (cha == 17) talkBox.innerText = "Talk to Ronaldinho Bandinho\n[STRG]"
         document.getElementById("map").appendChild(talkBox);
         const imgRect = img.getBoundingClientRect();
         const mapRect = document.getElementById("map").getBoundingClientRect();

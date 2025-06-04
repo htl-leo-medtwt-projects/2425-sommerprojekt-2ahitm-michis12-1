@@ -508,7 +508,7 @@ body{
 #blurDiv{
     background: rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(10px);
-    z-index: 12001;
+    z-index: 11001;
     display: none;
     width: 100vw;
     height: 100vh;
