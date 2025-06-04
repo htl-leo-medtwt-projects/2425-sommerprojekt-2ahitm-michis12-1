@@ -77,7 +77,7 @@ function switchToSaloon(){
         setTimeout(function(){
             let convo2 = setInterval(() => {
                 j--;
-                console.log(j)
+                
                 if(j==3){
                     document.getElementById('convoTxt'+j).innerHTML=  'Welcome to the saloon cowboy...'
                     
@@ -284,8 +284,6 @@ let imgS = document.getElementById('spriteImg')
 let imgC = document.getElementById('playerContainer')
 function gameLoop(){
     let spriteSet = false;
-    console.log("gameLoopStart")
-
     if (KEY_EVENTS.leftArrow || KEY_EVENTS.rightArrow || KEY_EVENTS.upArrow || KEY_EVENTS.downArrow) {
         if (!spriteSet) {  
             if (PLAYER.inHorseState) {
@@ -373,7 +371,6 @@ const swiper = new Swiper(".mySwiper", {
 //shop functions:
 
 function moneyRefresh(number){
-    console.log("refresh + "+PLAYER.coins)
     PLAYER.coins += number;
     document.getElementById('infoBoxMap').innerHTML= "Level: "+PLAYER.level+"/3 | Cash: "+PLAYER.coins;
     document.getElementById('moneyDisplayNumber').innerHTML = PLAYER.coins;
@@ -442,8 +439,7 @@ window.addEventListener('resize', () => {
 });
 //Archivements
 function showAchievement() {
-    //todo add sound
-    console.log("show")
+
     const toast = document.getElementById('achievement'+PLAYER.level);
     toast.classList.add('show');
 
@@ -452,8 +448,7 @@ function showAchievement() {
     }, 4000);
 }
 function showHelp(nmb) {
-    //todo add sound
-    console.log("show")
+ 
     const toast = document.getElementById('help'+nmb);
     toast.classList.add('show');
 
@@ -531,7 +526,7 @@ function openConvo(nmb){
             setTimeout(function(){
                 let convo2 = setInterval(() => {
                     j--;
-                    console.log(j)
+                   
                     if(j==3){
                         document.getElementById('convoTxt'+j).innerHTML=  'Are you brave enough bonehead?'
                         
@@ -577,7 +572,7 @@ function openConvo(nmb){
             setTimeout(function(){
                 let convo2 = setInterval(() => {
                     j--;
-                    console.log(j)
+                  
                     if(j==3){
                         document.getElementById('convoTxt'+j).innerHTML=  'Let´s have fun! Are you ready?'
                         
@@ -605,7 +600,7 @@ function openConvo(nmb){
                 setTimeout(function(){
                     let convo2 = setInterval(() => {
                         j--;
-                        console.log(j)
+                     
                         if(j==3){
                             document.getElementById('convoTxt'+j).innerHTML=  'See you , stranger!'
                             
@@ -625,7 +620,7 @@ function openConvo(nmb){
                 setTimeout(function(){
                     let convo2 = setInterval(() => {
                         j--;
-                        console.log(j)
+                      
                         if(j==3){
                             document.getElementById('convoTxt'+j).innerHTML=  'See you , stranger!'
                             
@@ -672,7 +667,7 @@ function openConvo(nmb){
             setTimeout(function(){
                 let convo2 = setInterval(() => {
                     j--;
-                    console.log(j)
+                
                     if(j==3){
                         document.getElementById('convoTxt'+j).innerHTML=  'Are you ready?'
                         
@@ -695,7 +690,7 @@ function openConvo(nmb){
             setTimeout(function(){
                 let convo2 = setInterval(() => {
                     j--;
-                    console.log(j)
+                   
                     if(j==3){
                         document.getElementById('convoTxt'+j).innerHTML=  ''
                         
